@@ -37,6 +37,9 @@ public class PlayerInteractObjectController : MonoBehaviour
         InteractableObjectBase interactable;
         if (interactableObject.TryGetComponent<InteractableObjectBase>(out interactable))
         {
+            if (!interactable.IsInteractable)
+                return;
+
             interactable.Interact();
             OnInteractionStarted?.Invoke();
         }

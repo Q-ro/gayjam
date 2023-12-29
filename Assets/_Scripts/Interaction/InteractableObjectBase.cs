@@ -1,23 +1,16 @@
-using System;
 using UnityEngine;
 
 namespace Scripts.Interaction
 {
-    public enum InteractionTypes
-    {
-        None,
-        Inspect,
-        Read,
-    }
-
     [RequireComponent(typeof(Rigidbody))]
     public abstract class InteractableObjectBase : MonoBehaviour
     {
-        protected InteractionTypes interactionType;
         protected Rigidbody rigidBody;
-        protected float rotationSpeed = 20f;
+        protected float rotationSpeed = 5f;
+        private bool isInteractable = false;
 
         public Rigidbody RigidBody { get => rigidBody; }
+        public bool IsInteractable { get => isInteractable; set => isInteractable = value; }
 
         protected virtual void Start()
         {
