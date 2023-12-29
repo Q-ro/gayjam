@@ -1,5 +1,4 @@
 using Scripts.PlayerInput;
-using System;
 using UnityEngine;
 
 namespace Scripts.Interaction
@@ -7,13 +6,15 @@ namespace Scripts.Interaction
     public class InspectableObject : InteractableObjectBase
     {
         new InteractionTypes interactionType => InteractionTypes.Inspect;
-        public float deltaRotationX;
-        public float deltaRotationY;
         public float rotationSpeed;
-        bool isInteracting = false;
+        private bool isInteracting = false;
+        private float deltaRotationX;
+        private float deltaRotationY;
 
-        void Start()
+
+        protected override void Start()
         {
+            base.Start();
             InputManager.OnLookMovement += OnLookMovementPerformed;
         }
 
@@ -21,6 +22,7 @@ namespace Scripts.Interaction
         {
             if (!isInteracting)
                 return;
+
             deltaRotationX = vector.x;
             deltaRotationY = vector.y;
 
@@ -32,6 +34,12 @@ namespace Scripts.Interaction
         public override void Interact()
         {
             isInteracting = !isInteracting;
+            rigidBody.useGravity = !isInteracting;
+            rigidBody.constraints = isInteracting ? RigidbodyConstraints.FreezePosition : RigidbodyConstraints.None;
+            Physics.IgnoreLayerCollision(6, 3, isInteracting);
+            var a = GameObject.FindWithTag("ObjectHolder");
+            if (a != null)
+                this.transform.position = a.transform.position;
         }
     }
 }

@@ -14,11 +14,11 @@ namespace Scripts.Interaction
     public abstract class InteractableObjectBase : MonoBehaviour
     {
         protected InteractionTypes interactionType;
-        private Rigidbody rigidBody;
+        protected Rigidbody rigidBody;
 
         public Rigidbody RigidBody { get => rigidBody; }
 
-        private void Start()
+        protected virtual void Start()
         {
             rigidBody = GetComponent<Rigidbody>();
         }
