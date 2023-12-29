@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e1fd8f4faed786e4a91775138aa99e6f
+guid: f519d4e1b6510f441997b76175a5a04a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Chair
-    second: {fileID: 2100000, guid: 7ba67c8af1dbe024dbe0f9c79615501a, type: 2}
+      name: Shelve
+    second: {fileID: 2100000, guid: cb22d57d72c2d324683b30f6393734d7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
