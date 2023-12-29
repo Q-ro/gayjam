@@ -21,6 +21,13 @@ namespace Scripts.Interaction
             InputManager.OnPickup += HandlePickup;
             PlayerInteractObjectController.OnInteractionStarted += OnInteractionStarted;
         }
+
+        private void OnDestroy()
+        {
+            InputManager.OnPickup -= HandlePickup;
+            PlayerInteractObjectController.OnInteractionStarted -= OnInteractionStarted;
+        }
+
         private void OnInteractionStarted()
         {
             isInteracting = !isInteracting;

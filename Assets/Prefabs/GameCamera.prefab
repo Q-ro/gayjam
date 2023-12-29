@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7949137551742582590}
   m_Layer: 0
   m_Name: Object Holder
-  m_TagString: Untagged
+  m_TagString: ObjectHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3496871691027904223}
   - component: {fileID: 6896885818583058654}
   - component: {fileID: 5912176178235945208}
+  - component: {fileID: 1034863855575965371}
   m_Layer: 0
   m_Name: GameCamera
   m_TagString: MainCamera
@@ -169,3 +170,16 @@ MonoBehaviour:
   objectHolder: {fileID: 7949137551742582590}
   pickupRange: 25
   pickupForce: 100
+--- !u!114 &1034863855575965371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2298527967499694209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc408d85b8c6b9a49b88b804fdc1e621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupRange: 20

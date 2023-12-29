@@ -25,7 +25,14 @@ namespace Scripts.PlayerInput
             playerControls.Player.Look.performed += OnLookPerformed;
             playerControls.Player.PickUp.performed += OnPickupPerformed;
             playerControls.Player.Interact.performed += OnInteractPerformed;
+        }
 
+        private void OnDestroy()
+        {
+            playerControls.Player.Movement.performed -= OnMovePerformed;
+            playerControls.Player.Look.performed -= OnLookPerformed;
+            playerControls.Player.PickUp.performed -= OnPickupPerformed;
+            playerControls.Player.Interact.performed -= OnInteractPerformed;
         }
 
         private void OnEnable()

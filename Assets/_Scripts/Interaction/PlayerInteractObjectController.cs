@@ -16,6 +16,12 @@ public class PlayerInteractObjectController : MonoBehaviour
         PlayerObjectPickupController.OnPickupPerformed += OnPickupPerformed;
     }
 
+    private void OnDestroy()
+    {
+        InputManager.Interact -= OnInteractPerformed;
+        PlayerObjectPickupController.OnPickupPerformed -= OnPickupPerformed;
+    }
+
     private void OnPickupPerformed(bool holdingObject)
     {
         isHoldingObject = holdingObject;
