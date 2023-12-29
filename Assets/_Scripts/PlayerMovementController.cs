@@ -21,7 +21,7 @@ namespace Scrips.PlayerMovement
         private Vector3 playerVelocity;
         private bool groundedPlayer;
 
-        private Vector3 _previousInputDirection;
+        private Vector3 horizontalInput;
 
         private void Start()
         {
@@ -31,10 +31,10 @@ namespace Scrips.PlayerMovement
 
         private void PerformMovement(Vector3 vector)
         {
-            if (_previousInputDirection == vector)
+            if (horizontalInput == vector)
                 return;
 
-            _previousInputDirection = vector;
+            horizontalInput = vector;
 
 
         }
@@ -47,13 +47,7 @@ namespace Scrips.PlayerMovement
                 playerVelocity.y = 0f;
             }
 
-            Vector3 move = MoveHorizontal();
-
-            if (move != Vector3.zero)
-            {
-                gameObject.transform.forward = move;
-            }
-
+            MoveHorizontal();
             MoveVertical();
         }
 
@@ -65,24 +59,7 @@ namespace Scrips.PlayerMovement
 
         private Vector3 MoveHorizontal()
         {
-
-            Vector3 move = (transform.right * _previousInputDirection.x + transform.forward * _previousInputDirection.y) * playerSpeed;
-
-            //move = input_control.Player_Map.Movement.ReadValue<Vector2>();
-            //float forcez = _previousInputDirection.x * playerSpeed * Time.deltaTime;
-            //float forcex = _previousInputDirection.y * playerSpeed * Time.deltaTime;
-            ////rb.AddForce(transform.forward * forcex, ForceMode.Force);
-            ////rb.AddForce(transform.right * forcez, ForceMode.Force);
-
-            //Vector3 move = transform.forward * forcex + transform.right * forcez;
-            //controller.Move(move.normalized * Time.deltaTime * playerSpeed);
-
-            //Vector2 movement = _previousInputDirection;
-            //Vector3 move = new Vector3(movement.x, 0, movement.y);
-
-            ////float forcez =  move.x * movement_force * Time.deltaTime;
-            ////float forcex = move.y * movement_force * Time.deltaTime;
-
+            Vector3 move = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * playerSpeed;
             controller.Move(move * Time.deltaTime);
             return move;
         }

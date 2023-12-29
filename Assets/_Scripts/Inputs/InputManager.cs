@@ -46,10 +46,10 @@ namespace Scrips.PlayerInput
             OnDirectionMovementPerformed?.Invoke(playerControls.Player.Movement.ReadValue<Vector2>());
         }
 
-        public Vector2 GetMovementPerformed()
-        {
-            return playerControls.Player.Movement.ReadValue<Vector2>();
-        }
+        //public Vector2 GetMovementPerformed()
+        //{
+        //    return playerControls.Player.Movement.ReadValue<Vector2>();
+        //}
 
         //public Vector2 GetLookPerformed()
         //{
