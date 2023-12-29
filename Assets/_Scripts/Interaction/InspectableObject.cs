@@ -8,6 +8,7 @@ namespace Scripts.Interaction
         private bool isInteracting = false;
         private float deltaRotationX;
         private float deltaRotationY;
+        Vector3 initialPosition;
 
 
         protected override void Start()
@@ -35,9 +36,20 @@ namespace Scripts.Interaction
             rigidBody.useGravity = !isInteracting;
             rigidBody.constraints = isInteracting ? RigidbodyConstraints.FreezePosition : RigidbodyConstraints.None;
             Physics.IgnoreLayerCollision(6, 3, isInteracting);
-            var a = GameObject.FindWithTag("ObjectHolder");
-            if (a != null)
-                this.transform.position = a.transform.position;
+
+            if (isInteracting)
+            {
+                var inpectorHolder = GameObject.FindWithTag("ObjectInspectorHolder");
+                if (inpectorHolder != null)
+                {
+                    initialPosition = this.transform.position;
+                    this.transform.position = inpectorHolder.transform.position;
+                }
+            }
+            else
+            {
+                this.transform.position = initialPosition;
+            }
         }
     }
 }
