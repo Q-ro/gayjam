@@ -12,7 +12,7 @@ namespace Scripts.PlayerMovement
 
         void Start()
         {
-            InputManager.OnLookMovementPerformed += OnLookMovementPerformed;
+            InputManager.OnLookMovement += OnLookMovementPerformed;
         }
 
         private void OnLookMovementPerformed(Vector2 mousemovement)

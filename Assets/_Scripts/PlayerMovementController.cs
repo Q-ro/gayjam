@@ -24,7 +24,7 @@ namespace Scripts.PlayerMovement
         private void Start()
         {
             controller = gameObject.GetComponent<CharacterController>();
-            InputManager.OnDirectionMovementPerformed += PerformMovement;
+            InputManager.OnDirectionMovement += PerformMovement;
         }
 
         private void PerformMovement(Vector3 vector)
