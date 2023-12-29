@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 namespace Scripts.Interaction
 {
     public enum InteractionTypes
     {
+        None,
         Inspect,
         Read,
     }
@@ -11,7 +13,7 @@ namespace Scripts.Interaction
     [RequireComponent(typeof(Rigidbody))]
     public abstract class InteractableObjectBase : MonoBehaviour
     {
-        [SerializeField] InteractionTypes interactionTypes;
+        protected InteractionTypes interactionType;
         private Rigidbody rigidBody;
 
         public Rigidbody RigidBody { get => rigidBody; }
