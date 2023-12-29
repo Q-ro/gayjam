@@ -16,7 +16,7 @@ public class TableDropOffSensor : MonoBehaviour
     {
         Debug.Log("Enter");
         InteractableObjectBase obj;
-        if (TryGetComponent<InteractableObjectBase>(out obj))
+        if (other.TryGetComponent<InteractableObjectBase>(out obj))
         {
             obj.IsInteractable = true;
         }
@@ -26,7 +26,7 @@ public class TableDropOffSensor : MonoBehaviour
     {
         Debug.Log("Exit");
         InteractableObjectBase obj;
-        if (TryGetComponent<InteractableObjectBase>(out obj))
+        if (other.TryGetComponent<InteractableObjectBase>(out obj))
         {
             obj.IsInteractable = false;
         }
