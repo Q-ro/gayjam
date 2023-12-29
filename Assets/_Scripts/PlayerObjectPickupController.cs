@@ -24,16 +24,10 @@ namespace Scripts.Interaction
 
         private void RecenterObject()
         {
-            if (Vector3.Distance(heldObject.transform.position, objectHolder.position) > 0.01f)
+            if (Vector3.Distance(heldObject.transform.position, objectHolder.position) > 0.15f)
             {
                 var moveDirection = objectHolder.position - heldObject.transform.position;
                 heldObjectRB.AddForce(moveDirection * pickupForce);
-
-                //heldObjectRB.MovePosition(moveDirection);
-            }
-            else
-            {
-                objectHolder.position = Vector3.Lerp(objectHolder.position, heldObject.transform.position, 5);
             }
         }
 
@@ -60,6 +54,7 @@ namespace Scripts.Interaction
             heldObjectRB.drag = 1;
             heldObject.transform.parent = null;
             heldObject = null;
+            Physics.IgnoreLayerCollision(6, 3, false);
         }
 
         private void PickupObject(GameObject pickupObject)
@@ -71,9 +66,12 @@ namespace Scripts.Interaction
                 heldObjectRB = interactable.RigidBody;
                 heldObjectRB.useGravity = false;
                 heldObjectRB.freezeRotation = true;
-                heldObjectRB.drag = 10;
+                heldObjectRB.drag = 20;
                 //heldObject.transform.parent = objectHolder.transform;
+                Physics.IgnoreLayerCollision(6, 3, true);
             }
         }
+
+
     }
 }

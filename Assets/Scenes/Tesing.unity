@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 470656360}
   - component: {fileID: 470656359}
   - component: {fileID: 470656358}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 573016899}
   - component: {fileID: 573016903}
   - component: {fileID: 573016904}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,8 +433,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.1464648, y: 1, z: -0.2767272}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -462,7 +462,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &573016904
@@ -477,6 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f57a959250a094449affde0909f9028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionTypes: 0
 --- !u!1 &593431799
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +503,7 @@ Transform:
   m_GameObject: {fileID: 593431799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -522,9 +523,9 @@ GameObject:
   - component: {fileID: 671668402}
   - component: {fileID: 671668401}
   - component: {fileID: 671668406}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -764,6 +765,7 @@ GameObject:
   - component: {fileID: 940273868}
   - component: {fileID: 940273867}
   - component: {fileID: 940273866}
+  - component: {fileID: 940273870}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -858,6 +860,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &940273870
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940273865}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 671668400}
-  mouse_sensitivity: 100
+  mouse_sensitivity: 45
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,8 +1023,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectHolder: {fileID: 593431800}
-  pickupRange: 5
-  pickupForce: 150
+  pickupRange: 25
+  pickupForce: 100
 --- !u!1 &1434400619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1069,7 @@ GameObject:
   - component: {fileID: 1968510660}
   - component: {fileID: 1968510659}
   - component: {fileID: 1968510663}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1168,10 +1197,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 705507995}
   - {fileID: 671668405}
+  - {fileID: 940273869}
   - {fileID: 182790210}
   - {fileID: 155685934}
   - {fileID: 963194228}
-  - {fileID: 940273869}
   - {fileID: 1434400620}
   - {fileID: 470656362}
   - {fileID: 573016902}
