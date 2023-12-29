@@ -6,7 +6,6 @@ namespace Scripts.Interaction
     public class InspectableObject : InteractableObjectBase
     {
         new InteractionTypes interactionType => InteractionTypes.Inspect;
-        public float rotationSpeed;
         private bool isInteracting = false;
         private float deltaRotationX;
         private float deltaRotationY;

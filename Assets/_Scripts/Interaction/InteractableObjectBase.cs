@@ -15,6 +15,7 @@ namespace Scripts.Interaction
     {
         protected InteractionTypes interactionType;
         protected Rigidbody rigidBody;
+        protected float rotationSpeed = 20f;
 
         public Rigidbody RigidBody { get => rigidBody; }
 
