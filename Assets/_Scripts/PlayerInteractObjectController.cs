@@ -1,27 +1,30 @@
 using Scripts.Interaction;
 using Scripts.PlayerInput;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteractObjectController : MonoBehaviour
 {
+    public static Action OnInteractionStarted;
+
     [SerializeField] float pickupRange = 20f;
-    //private Camera camera;
-    //private Transform inspectedObjectTransform;
-    
-
-
+    bool isHoldingObject = false;
 
     private void Start()
     {
-        //camera = Camera.main;
         InputManager.Interact += OnInteractPerformed;
+        PlayerObjectPickupController.OnPickupPerformed += OnPickupPerformed;
+    }
+
+    private void OnPickupPerformed(bool holdingObject)
+    {
+        isHoldingObject = holdingObject;
     }
 
     private void OnInteractPerformed()
     {
+        if (isHoldingObject)
+            return;
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))
         {
@@ -35,11 +38,7 @@ public class PlayerInteractObjectController : MonoBehaviour
         if (interactableObject.TryGetComponent<InteractableObjectBase>(out interactable))
         {
             interactable.Interact();
+            OnInteractionStarted?.Invoke();
         }
     }
-
-    //private void Update()
-    //{
-
-    //}
 }

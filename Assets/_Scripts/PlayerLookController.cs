@@ -1,4 +1,5 @@
 using Scripts.PlayerInput;
+using System;
 using UnityEngine;
 
 namespace Scripts.PlayerMovement
@@ -9,14 +10,23 @@ namespace Scripts.PlayerMovement
         [SerializeField] private float mouse_sensitivity = 10f;
         float xRotation;
         float yRotation;
-
+        bool isInteracting = false;
         void Start()
         {
             InputManager.OnLookMovement += OnLookMovementPerformed;
+            PlayerInteractObjectController.OnInteractionStarted += OnInteractionStarted;
+        }
+
+        private void OnInteractionStarted()
+        {
+            isInteracting = !isInteracting;
         }
 
         private void OnLookMovementPerformed(Vector2 mousemovement)
         {
+            if (isInteracting)
+                return;
+
             xRotation -= mousemovement.y * Time.deltaTime * mouse_sensitivity;
             //Clamp rotion vectors
             xRotation = Mathf.Clamp(xRotation, -90, 90);

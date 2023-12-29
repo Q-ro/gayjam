@@ -1,21 +1,31 @@
 using Scripts.PlayerInput;
+using System;
 using UnityEngine;
 
 namespace Scripts.Interaction
 {
     public class PlayerObjectPickupController : MonoBehaviour
     {
+        public static Action<bool> OnPickupPerformed;
+
         [SerializeField] Transform objectHolder;
         [SerializeField] private float pickupRange = 5.0f;
         [SerializeField] private float pickupForce = 150.0f;
 
         private GameObject heldObject;
         private Rigidbody heldObjectRB;
+        bool isInteracting = false;
 
         private void Start()
         {
             InputManager.OnPickup += HandlePickup;
+            PlayerInteractObjectController.OnInteractionStarted += OnInteractionStarted;
         }
+        private void OnInteractionStarted()
+        {
+            isInteracting = !isInteracting;
+        }
+
         private void Update()
         {
             if (heldObject != null)
@@ -33,6 +43,9 @@ namespace Scripts.Interaction
 
         private void HandlePickup()
         {
+            if (isInteracting)
+                return;
+
             if (heldObject == null)
             {
                 RaycastHit hit;
@@ -45,6 +58,8 @@ namespace Scripts.Interaction
             {
                 DropObject();
             }
+
+            OnPickupPerformed?.Invoke(heldObject != null);
         }
 
         private void DropObject()
@@ -69,6 +84,8 @@ namespace Scripts.Interaction
                 heldObjectRB.drag = 20;
                 //heldObject.transform.parent = objectHolder.transform;
                 Physics.IgnoreLayerCollision(6, 3, true);
+
+
             }
         }
 

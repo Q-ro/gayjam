@@ -20,11 +20,17 @@ namespace Scripts.PlayerMovement
         private bool groundedPlayer;
 
         private Vector3 horizontalInput;
+        bool isInteracting = false;
 
         private void Start()
         {
             controller = gameObject.GetComponent<CharacterController>();
             InputManager.OnDirectionMovement += PerformMovement;
+            PlayerInteractObjectController.OnInteractionStarted += OnInteractionStarted;
+        }
+        private void OnInteractionStarted()
+        {
+            isInteracting = !isInteracting;
         }
 
         private void PerformMovement(Vector3 vector)
@@ -37,6 +43,8 @@ namespace Scripts.PlayerMovement
 
         private void Update()
         {
+            if (isInteracting)
+                return;
             groundedPlayer = controller.isGrounded;
             if (groundedPlayer && playerVelocity.y < 0)
             {
