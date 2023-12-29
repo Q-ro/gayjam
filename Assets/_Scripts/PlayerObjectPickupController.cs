@@ -28,6 +28,12 @@ namespace Scripts.Interaction
             {
                 var moveDirection = objectHolder.position - heldObject.transform.position;
                 heldObjectRB.AddForce(moveDirection * pickupForce);
+
+                //heldObjectRB.MovePosition(moveDirection);
+            }
+            else
+            {
+                objectHolder.position = Vector3.Lerp(objectHolder.position, heldObject.transform.position, 5);
             }
         }
 
@@ -50,6 +56,7 @@ namespace Scripts.Interaction
         private void DropObject()
         {
             heldObjectRB.useGravity = true;
+            heldObjectRB.freezeRotation = false;
             heldObjectRB.drag = 1;
             heldObject.transform.parent = null;
             heldObject = null;
@@ -63,8 +70,9 @@ namespace Scripts.Interaction
                 heldObject = pickupObject;
                 heldObjectRB = interactable.RigidBody;
                 heldObjectRB.useGravity = false;
+                heldObjectRB.freezeRotation = true;
                 heldObjectRB.drag = 10;
-                heldObject.transform.parent = objectHolder.transform;
+                //heldObject.transform.parent = objectHolder.transform;
             }
         }
     }
