@@ -1,25 +1,29 @@
-using Scrips.PlayerInput;
+using Scripts.PlayerInput;
 using UnityEngine;
 
-public class PlayerLookController : MonoBehaviour
+namespace Scripts.PlayerMovement
 {
-    [SerializeField] private GameObject Player;
-    [SerializeField] private float mouse_sensitivity = 10f;
-    float xrotation;
-    float yrotation;
-
-    void Start()
+    public class PlayerLookController : MonoBehaviour
     {
-        InputManager.OnLookMovementPerformed += OnLookMovementPerformed;
-    }
+        [SerializeField] private GameObject Player;
+        [SerializeField] private float mouse_sensitivity = 10f;
+        float xRotation;
+        float yRotation;
 
-    private void OnLookMovementPerformed(Vector2 mousemovement)
-    {
-        xrotation -= mousemovement.y * Time.deltaTime * mouse_sensitivity;
-        xrotation = Mathf.Clamp(xrotation, -90, 90);
-        yrotation += mousemovement.x * Time.deltaTime * mouse_sensitivity;
-        transform.rotation = Quaternion.Euler(xrotation, yrotation, 0);
-        //Rotating the player
-        Player.transform.localRotation = Quaternion.Euler(0, yrotation, 0);
+        void Start()
+        {
+            InputManager.OnLookMovement += OnLookMovementPerformed;
+        }
+
+        private void OnLookMovementPerformed(Vector2 mousemovement)
+        {
+            xRotation -= mousemovement.y * Time.deltaTime * mouse_sensitivity;
+            //Clamp rotion vectors
+            xRotation = Mathf.Clamp(xRotation, -90, 90);
+            yRotation += mousemovement.x * Time.deltaTime * mouse_sensitivity;
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            //Rotating the player
+            Player.transform.localRotation = Quaternion.Euler(0, yRotation, 0);
+        }
     }
 }

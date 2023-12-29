@@ -1,8 +1,8 @@
 using UnityEngine;
 using Cinemachine;
-using Scrips.PlayerInput;
+using Scripts.PlayerInput;
 
-namespace Scrips.Extensions
+namespace Scripts.Extensions
 {
     public class CinemachinePOVExtension : CinemachineExtension
     {
