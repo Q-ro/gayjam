@@ -1,9 +1,7 @@
-using Scrips.PlayerInput;
-using System;
+using Scripts.PlayerInput;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace Scrips.PlayerMovement
+namespace Scripts.PlayerMovement
 {
 
     [RequireComponent(typeof(CharacterController))]
@@ -35,8 +33,6 @@ namespace Scrips.PlayerMovement
                 return;
 
             horizontalInput = vector;
-
-
         }
 
         private void Update()
