@@ -1,16 +1,26 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public abstract class InteractableObjectBase : MonoBehaviour
+namespace Scripts.Interaction
 {
-    private Rigidbody rb;
-
-    public Rigidbody RigidBody { get => rb; }
-
-    private void Start()
+    public enum InteractionTypes
     {
-        rb = GetComponent<Rigidbody>();
+        Inspect,
+        Read,
     }
 
-    public abstract void Interact();
+    [RequireComponent(typeof(Rigidbody))]
+    public abstract class InteractableObjectBase : MonoBehaviour
+    {
+        [SerializeField] InteractionTypes interactionTypes;
+        private Rigidbody rigidBody;
+
+        public Rigidbody RigidBody { get => rigidBody; }
+
+        private void Start()
+        {
+            rigidBody = GetComponent<Rigidbody>();
+        }
+
+        public abstract void Interact();
+    }
 }
