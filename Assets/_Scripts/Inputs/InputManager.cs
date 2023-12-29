@@ -17,8 +17,11 @@ namespace Scrips.PlayerInput
         void Awake()
         {
             playerControls = new PlayerControls();
-            playerControls.Player.Movement.performed += MovementPerformed;
-            playerControls.Player.Look.performed += LookPerformed;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
+            playerControls.Player.Movement.performed += OnMovePerformed;
+            playerControls.Player.Look.performed += OnLookPerformed;
+
         }
 
         private void OnEnable()
@@ -33,17 +36,25 @@ namespace Scrips.PlayerInput
 
         #endregion
 
-        private void MovementPerformed(InputAction.CallbackContext context)
+        private void OnLookPerformed(InputAction.CallbackContext context)
         {
-            var input = context.ReadValue<Vector2>();
-            var direction = new Vector3(input.x, 0, input.y);
-            OnDirectionMovementPerformed?.Invoke(direction);
+            OnLookMovementPerformed?.Invoke(playerControls.Player.Look.ReadValue<Vector2>());
         }
 
-        private void LookPerformed(InputAction.CallbackContext context)
+        private void OnMovePerformed(InputAction.CallbackContext context)
         {
-            OnLookMovementPerformed?.Invoke(context.ReadValue<Vector2>());
+            OnDirectionMovementPerformed?.Invoke(playerControls.Player.Movement.ReadValue<Vector2>());
         }
+
+        public Vector2 GetMovementPerformed()
+        {
+            return playerControls.Player.Movement.ReadValue<Vector2>();
+        }
+
+        //public Vector2 GetLookPerformed()
+        //{
+        //    return playerControls.Player.Look.ReadValue<Vector2>();
+        //}
     }
 
 }
