@@ -1,3 +1,4 @@
+using Scripts.PlayerMovement;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,6 +28,7 @@ namespace Scripts.PlayerInput
             playerControls.Player.PickUp.performed += OnPickupPerformed;
             playerControls.Player.Interact.performed += OnInteractPerformed;
             playerControls.Player.SubmitDialogue.performed += OnSubmitDialoguePerformed;
+            playerControls.Player.ReleaseCharInteraction.performed += OnReleaseChaeInteractionPerformed;
         }
 
         private void OnDestroy()
@@ -72,6 +74,12 @@ namespace Scripts.PlayerInput
         {
             SubmitDialogue?.Invoke();
         }
+
+        private void OnReleaseChaeInteractionPerformed(InputAction.CallbackContext context)
+        {
+            PlayerMovementController.OnLockPlayerMovementPerformed?.Invoke(false);
+        }
+
     }
 }
 

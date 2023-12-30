@@ -14,7 +14,6 @@ public class TableDropOffSensor : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Enter");
         InteractableObjectBase obj;
         if (other.TryGetComponent<InteractableObjectBase>(out obj))
         {
@@ -24,7 +23,6 @@ public class TableDropOffSensor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Exit");
         InteractableObjectBase obj;
         if (other.TryGetComponent<InteractableObjectBase>(out obj))
         {

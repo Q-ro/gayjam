@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReleaseCharInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a322518-cf68-48a0-91ff-e0b57654fe5e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""SubmitDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12a6d5db-82c6-466b-a63b-c00ee626de70"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReleaseCharInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_SubmitDialogue = m_Player.FindAction("SubmitDialogue", throwIfNotFound: true);
+        m_Player_ReleaseCharInteraction = m_Player.FindAction("ReleaseCharInteraction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +272,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_SubmitDialogue;
+    private readonly InputAction m_Player_ReleaseCharInteraction;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -260,6 +282,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @SubmitDialogue => m_Wrapper.m_Player_SubmitDialogue;
+        public InputAction @ReleaseCharInteraction => m_Wrapper.m_Player_ReleaseCharInteraction;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +307,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SubmitDialogue.started += instance.OnSubmitDialogue;
             @SubmitDialogue.performed += instance.OnSubmitDialogue;
             @SubmitDialogue.canceled += instance.OnSubmitDialogue;
+            @ReleaseCharInteraction.started += instance.OnReleaseCharInteraction;
+            @ReleaseCharInteraction.performed += instance.OnReleaseCharInteraction;
+            @ReleaseCharInteraction.canceled += instance.OnReleaseCharInteraction;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -303,6 +329,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SubmitDialogue.started -= instance.OnSubmitDialogue;
             @SubmitDialogue.performed -= instance.OnSubmitDialogue;
             @SubmitDialogue.canceled -= instance.OnSubmitDialogue;
+            @ReleaseCharInteraction.started -= instance.OnReleaseCharInteraction;
+            @ReleaseCharInteraction.performed -= instance.OnReleaseCharInteraction;
+            @ReleaseCharInteraction.canceled -= instance.OnReleaseCharInteraction;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -327,5 +356,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnPickUp(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnSubmitDialogue(InputAction.CallbackContext context);
+        void OnReleaseCharInteraction(InputAction.CallbackContext context);
     }
 }

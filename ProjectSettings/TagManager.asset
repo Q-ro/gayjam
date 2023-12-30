@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ObjectHolder
+  - ObjectInspectorHolder
   layers:
   - Default
   - TransparentFX

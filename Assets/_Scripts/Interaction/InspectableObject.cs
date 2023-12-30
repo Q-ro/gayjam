@@ -32,6 +32,7 @@ namespace Scripts.Interaction
 
         public override void Interact()
         {
+            PlayerInteractObjectController.OnInteractionStarted?.Invoke();
             isInteracting = !isInteracting;
             rigidBody.useGravity = !isInteracting;
             rigidBody.constraints = isInteracting ? RigidbodyConstraints.FreezePosition : RigidbodyConstraints.None;

@@ -9,6 +9,7 @@ public class PlayerInteractObjectController : MonoBehaviour
 
     [SerializeField] float pickupRange = 20f;
     bool isHoldingObject = false;
+    InteractableObjectBase heldInteractableObject;
 
     private void Start()
     {
@@ -40,14 +41,22 @@ public class PlayerInteractObjectController : MonoBehaviour
 
     private void DoInteraction(GameObject interactableObject)
     {
-        InteractableObjectBase interactable;
-        if (interactableObject.TryGetComponent<InteractableObjectBase>(out interactable))
+        //InteractableObjectBase interactable;
+        if (heldInteractableObject == null)
         {
-            if (!interactable.IsInteractable)
-                return;
-
-            interactable.Interact();
-            OnInteractionStarted?.Invoke();
+            if (interactableObject.TryGetComponent<InteractableObjectBase>(out heldInteractableObject))
+            {
+                if (!heldInteractableObject.IsInteractable)
+                    return;
+                //heldInteractableObject = heldInteractableObject;
+                heldInteractableObject.Interact();
+                //OnInteractionStarted?.Invoke();
+            }
+        }
+        else
+        {
+            heldInteractableObject.Interact();
+            heldInteractableObject = null;
         }
     }
 }
