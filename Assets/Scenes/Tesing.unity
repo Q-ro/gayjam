@@ -1355,6 +1355,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7619518503614047029, guid: 17de797ec6f303f46829d4ae8a4641ce, type: 3}
+      propertyPath: npcsToSpawn.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619518503614047029, guid: 17de797ec6f303f46829d4ae8a4641ce, type: 3}
+      propertyPath: npcsToSpawn.Array.data[0]
+      value: 
+      objectReference: {fileID: 1995249318571847894, guid: 7e72c34b89e84b6478cda779b1f1a626, type: 3}
+    - target: {fileID: 7619518503614047029, guid: 17de797ec6f303f46829d4ae8a4641ce, type: 3}
+      propertyPath: npcsToSpawn.Array.data[1]
+      value: 
+      objectReference: {fileID: 1995249318571847894, guid: f864c1f5a41bba34f9fc9f985cbf6ca8, type: 3}
+    - target: {fileID: 7619518503614047029, guid: 17de797ec6f303f46829d4ae8a4641ce, type: 3}
+      propertyPath: npcsToSpawn.Array.data[2]
+      value: 
+      objectReference: {fileID: 1995249318571847894, guid: 1fc7499822235ba4b988b611ba01f6bc, type: 3}
+    - target: {fileID: 7619518503614047029, guid: 17de797ec6f303f46829d4ae8a4641ce, type: 3}
+      propertyPath: npcsToSpawn.Array.data[3]
+      value: 
+      objectReference: {fileID: 1995249318571847894, guid: 53795c9388dca084f9f7611c03ed83c1, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
