@@ -96,5 +96,15 @@ namespace Scripts.Interaction
             Cursor.visible = false;
             this.transform.position = initialPosition;
         }
+
+        public override void StartInteraction()
+        {
+            
+        }
+
+        public override void EndInteraction()
+        {
+            
+        }
     }
 }

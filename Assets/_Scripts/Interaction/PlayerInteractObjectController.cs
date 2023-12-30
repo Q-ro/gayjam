@@ -52,12 +52,14 @@ public class PlayerInteractObjectController : MonoBehaviour
                     return;
                 //heldInteractableObject = heldInteractableObject;
                 heldInteractableObject.Interact();
+                heldInteractableObject.StartInteraction();
                 //OnInteractionStarted?.Invoke();
             }
         }
         else
         {
             heldInteractableObject.Interact();
+            heldInteractableObject.EndInteraction();
             heldInteractableObject = null;
         }
     }

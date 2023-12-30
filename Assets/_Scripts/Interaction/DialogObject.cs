@@ -16,20 +16,38 @@ namespace Scripts.Interaction
             base.Start();
             IsInteractable = true;
             dialogueManager = DialogueManager.GetInstance();
+            InputManager.OnInteract += EndDialogue;
+        }
+
+        private void OnDestroy(){
+            InputManager.OnInteract -= EndDialogue;
         }
         public override void Interact()
         {
-            if(dialogueManager.CanExitDialogue){
+            
+        }
+
+        public override void StartInteraction()
+        {
+            if(!dialogueManager.CanExitDialogue && !dialogueManager.DialogueIsPlaying){
+                dialogueManager.DialogueBubble = bubbleGameObject;
+                dialogueManager.DialogueText = bubbleText;
+                Debug.Log("Entering Dialogue Mode");
+                dialogueManager.EnterDialogueMode(inkJson);
+            }
+            
+        }
+
+        public override void EndInteraction()
+        {
+           
+        }
+
+        private void EndDialogue(){
+             if(dialogueManager.CanExitDialogue){
                 Debug.Log("Exit dialog");
                 dialogueManager.CanExitDialogue = false;
                 IsInteractable = false;
-            } else {
-                if(!dialogueManager.DialogueIsPlaying){
-                    dialogueManager.DialogueBubble = bubbleGameObject;
-                    dialogueManager.DialogueText = bubbleText;
-                    Debug.Log("Entering Dialogue Mode");
-                    dialogueManager.EnterDialogueMode(inkJson);
-                }
             }
         }
     }

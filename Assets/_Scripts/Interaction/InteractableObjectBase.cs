@@ -16,7 +16,8 @@ namespace Scripts.Interaction
         {
             rigidBody = GetComponent<Rigidbody>();
         }
-
+        public abstract void StartInteraction();
+        public abstract void EndInteraction();
         public abstract void Interact();
     }
 }

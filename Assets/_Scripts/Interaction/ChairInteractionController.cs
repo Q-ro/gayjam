@@ -37,4 +37,11 @@ public class ChairInteractionController : InteractableObjectBase
         OnInteractWithChair?.Invoke(true);
     }
 
+    public override void StartInteraction()
+    {
+    }
+
+    public override void EndInteraction()
+    {
+    }
 }

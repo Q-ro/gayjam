@@ -95,6 +95,7 @@ public class DialogueManager : MonoBehaviour
 
     private void OnInteractPerformed()
     {
+        Debug.Log(canExitDialogue);
         if (canExitDialogue)
         {
             ExitDialogueMode();
@@ -142,6 +143,7 @@ public class DialogueManager : MonoBehaviour
 
     private void ExitDialogueMode()
     {
+        Debug.Log("Exiting Dialogue Mode - Manager");
         dialogueIsPlaying = false;
         dialogueBubble.SetActive(false);
         dialoguePanel.SetActive(false);
