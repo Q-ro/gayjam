@@ -10,6 +10,7 @@ namespace Scripts.PlayerInput
         public static Action<Vector2> OnLookMovement;
         public static Action OnPickup;
         public static Action Interact;
+        public static Action SubmitDialogue;
 
         private PlayerControls playerControls;
 
@@ -25,6 +26,7 @@ namespace Scripts.PlayerInput
             playerControls.Player.Look.performed += OnLookPerformed;
             playerControls.Player.PickUp.performed += OnPickupPerformed;
             playerControls.Player.Interact.performed += OnInteractPerformed;
+            playerControls.Player.SubmitDialogue.performed += OnSubmitDialoguePerformed;
         }
 
         private void OnDestroy()
@@ -33,6 +35,7 @@ namespace Scripts.PlayerInput
             playerControls.Player.Look.performed -= OnLookPerformed;
             playerControls.Player.PickUp.performed -= OnPickupPerformed;
             playerControls.Player.Interact.performed -= OnInteractPerformed;
+            playerControls.Player.SubmitDialogue.performed -= OnSubmitDialoguePerformed;
         }
 
         private void OnEnable()
@@ -64,6 +67,10 @@ namespace Scripts.PlayerInput
         private void OnInteractPerformed(InputAction.CallbackContext context)
         {
             Interact?.Invoke();
+        }
+        private void OnSubmitDialoguePerformed(InputAction.CallbackContext context)
+        {
+            SubmitDialogue?.Invoke();
         }
     }
 }
