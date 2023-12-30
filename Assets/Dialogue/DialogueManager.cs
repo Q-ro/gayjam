@@ -116,7 +116,7 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text = currentStory.Continue();
             // display choices, if any, for this dialogue line
             DisplayChoices();
-            // chekc if we are at the end of the story
+            // check if we are at the end of the story
             if (!currentStory.canContinue && currentStory.currentChoices.Count == 0)
             {
                 exitLbl.SetActive(true);
