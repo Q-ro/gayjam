@@ -10,12 +10,20 @@ namespace Scripts.Interaction
         private float deltaRotationY;
         Vector3 initialPosition;
 
+        bool isPlayerSitted;
 
         protected override void Start()
         {
             base.Start();
             InputManager.OnLookMovement += OnLookMovementPerformed;
+            ChairInteractionController.OnInteractWithChair += OnPlayerInteractionWithChairPerformed;
         }
+
+        private void OnPlayerInteractionWithChairPerformed(bool obj)
+        {
+            isPlayerSitted = obj;
+        }
+
 
         private void OnLookMovementPerformed(Vector2 vector)
         {
@@ -32,6 +40,7 @@ namespace Scripts.Interaction
 
         public override void Interact()
         {
+            if (!isPlayerSitted) return;
             PlayerInteractObjectController.OnInteractionStarted?.Invoke();
             isInteracting = !isInteracting;
             rigidBody.useGravity = !isInteracting;

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ChairInteractionController : InteractableObjectBase
 {
+    public static Action<bool> OnInteractWithChair;
+
     [SerializeField] GameObject sitChairPlayerTargetPosition;
     [SerializeField] GameObject stardChairPlayerTargetPosition;
     [SerializeField] float sitAnimationSpeed = 3.5f;
@@ -19,7 +21,7 @@ public class ChairInteractionController : InteractableObjectBase
 
     private void OnCharacterMovementReleased(bool obj)
     {
-        PlayerMovementController.MovementPlayerToPosition(stardChairPlayerTargetPosition.transform.position, standAnimationSpeed, () => { Physics.IgnoreLayerCollision(6, 3, false); });
+        PlayerMovementController.MovementPlayerToPosition(stardChairPlayerTargetPosition.transform.position, standAnimationSpeed, () => { Physics.IgnoreLayerCollision(6, 3, false); OnInteractWithChair?.Invoke(false); });
     }
 
     public override void Interact()
@@ -27,6 +29,7 @@ public class ChairInteractionController : InteractableObjectBase
         Physics.IgnoreLayerCollision(6, 3, true);
         PlayerMovementController.OnLockPlayerMovementPerformed(true);
         PlayerMovementController.MovementPlayerToPosition(sitChairPlayerTargetPosition.transform.position, sitAnimationSpeed, () => { });
+        OnInteractWithChair?.Invoke(true);
     }
 
 }
