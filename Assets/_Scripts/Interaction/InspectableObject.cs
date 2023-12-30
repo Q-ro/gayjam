@@ -1,12 +1,15 @@
 using Scripts.PlayerInput;
 using Scripts.PlayerMovement;
 using Scripts.UI;
+using System;
 using UnityEngine;
 
 namespace Scripts.Interaction
 {
     public class InspectableObject : InteractableObjectBase
     {
+        public static Action OnObjectWasInspected;
+
         [SerializeField] InspectableInfo inspectableInfo;
 
         private bool isInteracting = false;
@@ -100,6 +103,7 @@ namespace Scripts.Interaction
             Cursor.visible = false;
             this.transform.position = initialPosition;
             InspectedInfoDisplay.OnShowInfoDisplay?.Invoke(false);
+            OnObjectWasInspected?.Invoke();
         }
 
         public override void StartInteraction()

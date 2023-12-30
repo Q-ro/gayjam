@@ -6,6 +6,7 @@ namespace Scripts.Interaction
 {
     public class DialogObject : InteractableObjectBase
     {
+
         [SerializeField] GameObject objectToSpawn;
         [SerializeField] bool isDroppingObject = false;
 

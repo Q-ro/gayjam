@@ -107,7 +107,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!54 &1236051069457878309
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 5238028291428362658, guid: 0dab5d2d3c4fe9a44a644a41e49aa1cd, type: 3}
+  isDroppingObject: 1
   inkJson: {fileID: 4900000, guid: ab13070a16456fb40ac9181fad823fae, type: 3}
   bubbleGameObject: {fileID: 5562804867735510891}
   bubbleText: {fileID: 7582734407214749134}
