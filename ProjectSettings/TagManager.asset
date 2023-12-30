@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ObjectHolder
   - ObjectInspectorHolder
+  - TableObjectSpawnerPosition
   layers:
   - Default
   - TransparentFX
