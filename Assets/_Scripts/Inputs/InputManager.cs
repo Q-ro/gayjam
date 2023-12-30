@@ -36,8 +36,8 @@ namespace Scripts.PlayerInput
             playerControls.Player.Dialogue2.performed += OnDialogueOption2Performed;
             playerControls.Player.Dialogue3.performed += OnDialogueOption3Performed;
             playerControls.Player.ReleaseCharInteraction.performed += OnReleaseChaeInteractionPerformed;
-            playerControls.Player.MousePressed.performed += (context) => OnPlayerMouseHeldPerformed.Invoke(true);
-            playerControls.Player.MousePressed.canceled += (context) => OnPlayerMouseHeldPerformed.Invoke(false);
+            playerControls.Player.MousePressed.performed += (context) => OnPlayerMouseHeldPerformed?.Invoke(true);
+            playerControls.Player.MousePressed.canceled += (context) => OnPlayerMouseHeldPerformed?.Invoke(false);
         }
 
         private void OnMousePressed(InputAction.CallbackContext context)

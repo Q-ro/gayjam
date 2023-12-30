@@ -7,6 +7,7 @@ namespace Scripts.Interaction
     public class DialogObject : InteractableObjectBase
     {
         [SerializeField] GameObject objectToSpawn;
+        [SerializeField] bool isDroppingObject = false;
 
         [Header("Ink JSON")]
         [SerializeField] private TextAsset inkJson;
@@ -52,13 +53,32 @@ namespace Scripts.Interaction
             if (dialogueManager.CanExitDialogue)
             {
                 Debug.Log("Exit dialog");
-                dialogueManager.CanExitDialogue = false;
-                IsInteractable = false;
-                if (objectToSpawn == null)
-                    return;
-                var spawnPosition = GameObject.FindWithTag("TableObjectSpawnerPosition").transform.position;
-                var go = Instantiate(objectToSpawn);
-                go.transform.position = spawnPosition;
+
+                if (isDroppingObject)
+                {
+                    if (objectToSpawn == null)
+                        return;
+                    dialogueManager.CanExitDialogue = false;
+                    IsInteractable = false;
+                    var spawnPosition = GameObject.FindWithTag("TableObjectSpawnerPosition").transform.position;
+                    var go = Instantiate(objectToSpawn);
+                    go.transform.position = spawnPosition;
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    Debug.Log("object retrived");
+                    //if object is in table
+                    var a = GameObject.FindAnyObjectByType<InspectableObject>();
+                    if (a != null)
+                        return;
+                    if (a.IsInteractable)
+                    {
+                        dialogueManager.CanExitDialogue = false;
+                        Destroy(a.gameObject);
+                        Destroy(this.gameObject);
+                    }
+                }
             }
         }
     }
