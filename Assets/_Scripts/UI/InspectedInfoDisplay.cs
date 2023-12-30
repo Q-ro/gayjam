@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using TMPro;
 using UnityEngine;
 
 namespace Scripts.UI
 {
+    [Serializable]
     public struct InspectableInfo
     {
         public string name;
-        public string colot;
+        public string color;
         public string material;
         public string brand;
         public string year;
@@ -16,7 +17,19 @@ namespace Scripts.UI
 
     public class InspectedInfoDisplay : MonoBehaviour
     {
-        [SerializeField] InspectableInfo info;
+        public static Action<InspectableInfo> OnUpdateInfoDisplay;
+        public static Action<bool> OnShowInfoDisplay;
+
+        [SerializeField] TextMeshProUGUI nameDisplay;
+        [SerializeField] TextMeshProUGUI colorDisplay;
+        [SerializeField] TextMeshProUGUI materialDisplay;
+        [SerializeField] TextMeshProUGUI brandlDisplay;
+        [SerializeField] TextMeshProUGUI yearDisplay;
+
+        private void Start()
+        {
+            OnUpdateInfoDisplay += UpdateInfoDisplay;
+        }
 
         private void UpdateInfoDisplay(InspectableInfo info)
         {

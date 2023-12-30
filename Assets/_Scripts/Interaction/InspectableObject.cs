@@ -1,12 +1,14 @@
 using Scripts.PlayerInput;
 using Scripts.PlayerMovement;
-using System;
+using Scripts.UI;
 using UnityEngine;
 
 namespace Scripts.Interaction
 {
     public class InspectableObject : InteractableObjectBase
     {
+        [SerializeField] InspectableInfo inspectableInfo;
+
         private bool isInteracting = false;
         private float deltaRotationX;
         private float deltaRotationY;
@@ -88,6 +90,8 @@ namespace Scripts.Interaction
                 initialPosition = this.transform.position;
                 this.transform.position = inpectorHolder.transform.position;
             }
+            InspectedInfoDisplay.OnUpdateInfoDisplay?.Invoke(inspectableInfo);
+            InspectedInfoDisplay.OnShowInfoDisplay?.Invoke(true);
         }
 
         private void StopInspectedObject()
@@ -95,16 +99,17 @@ namespace Scripts.Interaction
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             this.transform.position = initialPosition;
+            InspectedInfoDisplay.OnShowInfoDisplay?.Invoke(false);
         }
 
         public override void StartInteraction()
         {
-            
+
         }
 
         public override void EndInteraction()
         {
-            
+
         }
     }
 }
