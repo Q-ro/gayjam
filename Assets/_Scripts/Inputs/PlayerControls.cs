@@ -80,6 +80,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MousePressed"",
+                    ""type"": ""Button"",
+                    ""id"": ""09456622-62a2-4dc2-8e42-b3e6ea17e1c7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ReleaseCharInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e3cca8d-8bfe-4c1f-8235-938c32504d8b"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_SubmitDialogue = m_Player.FindAction("SubmitDialogue", throwIfNotFound: true);
         m_Player_ReleaseCharInteraction = m_Player.FindAction("ReleaseCharInteraction", throwIfNotFound: true);
+        m_Player_MousePressed = m_Player.FindAction("MousePressed", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_SubmitDialogue;
     private readonly InputAction m_Player_ReleaseCharInteraction;
+    private readonly InputAction m_Player_MousePressed;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -283,6 +305,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @SubmitDialogue => m_Wrapper.m_Player_SubmitDialogue;
         public InputAction @ReleaseCharInteraction => m_Wrapper.m_Player_ReleaseCharInteraction;
+        public InputAction @MousePressed => m_Wrapper.m_Player_MousePressed;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +333,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ReleaseCharInteraction.started += instance.OnReleaseCharInteraction;
             @ReleaseCharInteraction.performed += instance.OnReleaseCharInteraction;
             @ReleaseCharInteraction.canceled += instance.OnReleaseCharInteraction;
+            @MousePressed.started += instance.OnMousePressed;
+            @MousePressed.performed += instance.OnMousePressed;
+            @MousePressed.canceled += instance.OnMousePressed;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -332,6 +358,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ReleaseCharInteraction.started -= instance.OnReleaseCharInteraction;
             @ReleaseCharInteraction.performed -= instance.OnReleaseCharInteraction;
             @ReleaseCharInteraction.canceled -= instance.OnReleaseCharInteraction;
+            @MousePressed.started -= instance.OnMousePressed;
+            @MousePressed.performed -= instance.OnMousePressed;
+            @MousePressed.canceled -= instance.OnMousePressed;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -357,5 +386,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnSubmitDialogue(InputAction.CallbackContext context);
         void OnReleaseCharInteraction(InputAction.CallbackContext context);
+        void OnMousePressed(InputAction.CallbackContext context);
     }
 }

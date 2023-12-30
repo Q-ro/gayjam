@@ -13,13 +13,13 @@ public class PlayerInteractObjectController : MonoBehaviour
 
     private void Start()
     {
-        InputManager.Interact += OnInteractPerformed;
+        InputManager.OnInteract += OnInteractPerformed;
         PlayerObjectPickupController.OnPickupPerformed += OnPickupPerformed;
     }
 
     private void OnDestroy()
     {
-        InputManager.Interact -= OnInteractPerformed;
+        InputManager.OnInteract -= OnInteractPerformed;
         PlayerObjectPickupController.OnPickupPerformed -= OnPickupPerformed;
     }
 

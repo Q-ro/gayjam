@@ -9,6 +9,7 @@ namespace Scripts.Interaction
         private float deltaRotationX;
         private float deltaRotationY;
         Vector3 initialPosition;
+        private bool isMouseDragged;
 
         bool isPlayerSitted;
 
@@ -16,18 +17,25 @@ namespace Scripts.Interaction
         {
             base.Start();
             InputManager.OnLookMovement += OnLookMovementPerformed;
+            InputManager.OnPlayerMouseHeldPerformed += OnPlayerMouseHeldPerformed;
             ChairInteractionController.OnInteractWithChair += OnPlayerInteractionWithChairPerformed;
+
         }
 
-        private void OnPlayerInteractionWithChairPerformed(bool obj)
+        private void OnDestroy()
         {
-            isPlayerSitted = obj;
+            InputManager.OnLookMovement -= OnLookMovementPerformed;
+            InputManager.OnPlayerMouseHeldPerformed -= OnPlayerMouseHeldPerformed;
+            ChairInteractionController.OnInteractWithChair -= OnPlayerInteractionWithChairPerformed;
         }
+
+        private void OnPlayerMouseHeldPerformed(bool obj) => isMouseDragged = obj;
+        private void OnPlayerInteractionWithChairPerformed(bool obj) => isPlayerSitted = obj;
 
 
         private void OnLookMovementPerformed(Vector2 vector)
         {
-            if (!isInteracting)
+            if (!isInteracting || !isMouseDragged)
                 return;
 
             deltaRotationX = vector.x;

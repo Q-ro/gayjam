@@ -19,6 +19,11 @@ public class ChairInteractionController : InteractableObjectBase
         PlayerMovementController.OnLockPlayerMovementPerformed += OnCharacterMovementReleased;
     }
 
+    private void OnDestroy()
+    {
+        PlayerMovementController.OnLockPlayerMovementPerformed -= OnCharacterMovementReleased;
+    }
+
     private void OnCharacterMovementReleased(bool obj)
     {
         PlayerMovementController.MovementPlayerToPosition(stardChairPlayerTargetPosition.transform.position, standAnimationSpeed, () => { Physics.IgnoreLayerCollision(6, 3, false); OnInteractWithChair?.Invoke(false); });

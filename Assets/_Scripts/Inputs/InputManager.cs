@@ -10,8 +10,9 @@ namespace Scripts.PlayerInput
         public static Action<Vector3> OnDirectionMovement;
         public static Action<Vector2> OnLookMovement;
         public static Action OnPickup;
-        public static Action Interact;
+        public static Action OnInteract;
         public static Action SubmitDialogue;
+        public static Action<bool> OnPlayerMouseHeldPerformed;
 
         private PlayerControls playerControls;
 
@@ -29,6 +30,13 @@ namespace Scripts.PlayerInput
             playerControls.Player.Interact.performed += OnInteractPerformed;
             playerControls.Player.SubmitDialogue.performed += OnSubmitDialoguePerformed;
             playerControls.Player.ReleaseCharInteraction.performed += OnReleaseChaeInteractionPerformed;
+            playerControls.Player.MousePressed.performed += (context) => OnPlayerMouseHeldPerformed.Invoke(true);
+            playerControls.Player.MousePressed.canceled += (context) => OnPlayerMouseHeldPerformed.Invoke(false);
+        }
+
+        private void OnMousePressed(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
         }
 
         private void OnDestroy()
@@ -38,6 +46,8 @@ namespace Scripts.PlayerInput
             playerControls.Player.PickUp.performed -= OnPickupPerformed;
             playerControls.Player.Interact.performed -= OnInteractPerformed;
             playerControls.Player.SubmitDialogue.performed -= OnSubmitDialoguePerformed;
+            playerControls.Player.MousePressed.performed -= (context) => OnPlayerMouseHeldPerformed.Invoke(true);
+            playerControls.Player.MousePressed.canceled -= (context) => OnPlayerMouseHeldPerformed.Invoke(false);
         }
 
         private void OnEnable()
@@ -68,7 +78,7 @@ namespace Scripts.PlayerInput
         }
         private void OnInteractPerformed(InputAction.CallbackContext context)
         {
-            Interact?.Invoke();
+            OnInteract?.Invoke();
         }
         private void OnSubmitDialoguePerformed(InputAction.CallbackContext context)
         {
