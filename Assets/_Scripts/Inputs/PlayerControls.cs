@@ -89,6 +89,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dialogue1"",
+                    ""type"": ""Button"",
+                    ""id"": ""af5682bd-5f70-44ce-9470-e2eb89db9a1c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dialogue2"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c32d4b5-1c40-4e6c-9c76-eada125363bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dialogue3"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3f10154-809d-4b05-8174-92d18a989a80"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +239,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""MousePressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f65b80c-2128-48b4-a4f8-2ca45ad4d1e5"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dialogue2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5892c8eb-3726-4734-90ac-107d92e79a73"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dialogue3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9998300c-13a3-416a-943f-84f3460935dd"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dialogue1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +287,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_SubmitDialogue = m_Player.FindAction("SubmitDialogue", throwIfNotFound: true);
         m_Player_ReleaseCharInteraction = m_Player.FindAction("ReleaseCharInteraction", throwIfNotFound: true);
         m_Player_MousePressed = m_Player.FindAction("MousePressed", throwIfNotFound: true);
+        m_Player_Dialogue1 = m_Player.FindAction("Dialogue1", throwIfNotFound: true);
+        m_Player_Dialogue2 = m_Player.FindAction("Dialogue2", throwIfNotFound: true);
+        m_Player_Dialogue3 = m_Player.FindAction("Dialogue3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +358,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SubmitDialogue;
     private readonly InputAction m_Player_ReleaseCharInteraction;
     private readonly InputAction m_Player_MousePressed;
+    private readonly InputAction m_Player_Dialogue1;
+    private readonly InputAction m_Player_Dialogue2;
+    private readonly InputAction m_Player_Dialogue3;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -306,6 +372,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SubmitDialogue => m_Wrapper.m_Player_SubmitDialogue;
         public InputAction @ReleaseCharInteraction => m_Wrapper.m_Player_ReleaseCharInteraction;
         public InputAction @MousePressed => m_Wrapper.m_Player_MousePressed;
+        public InputAction @Dialogue1 => m_Wrapper.m_Player_Dialogue1;
+        public InputAction @Dialogue2 => m_Wrapper.m_Player_Dialogue2;
+        public InputAction @Dialogue3 => m_Wrapper.m_Player_Dialogue3;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -336,6 +405,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MousePressed.started += instance.OnMousePressed;
             @MousePressed.performed += instance.OnMousePressed;
             @MousePressed.canceled += instance.OnMousePressed;
+            @Dialogue1.started += instance.OnDialogue1;
+            @Dialogue1.performed += instance.OnDialogue1;
+            @Dialogue1.canceled += instance.OnDialogue1;
+            @Dialogue2.started += instance.OnDialogue2;
+            @Dialogue2.performed += instance.OnDialogue2;
+            @Dialogue2.canceled += instance.OnDialogue2;
+            @Dialogue3.started += instance.OnDialogue3;
+            @Dialogue3.performed += instance.OnDialogue3;
+            @Dialogue3.canceled += instance.OnDialogue3;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -361,6 +439,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MousePressed.started -= instance.OnMousePressed;
             @MousePressed.performed -= instance.OnMousePressed;
             @MousePressed.canceled -= instance.OnMousePressed;
+            @Dialogue1.started -= instance.OnDialogue1;
+            @Dialogue1.performed -= instance.OnDialogue1;
+            @Dialogue1.canceled -= instance.OnDialogue1;
+            @Dialogue2.started -= instance.OnDialogue2;
+            @Dialogue2.performed -= instance.OnDialogue2;
+            @Dialogue2.canceled -= instance.OnDialogue2;
+            @Dialogue3.started -= instance.OnDialogue3;
+            @Dialogue3.performed -= instance.OnDialogue3;
+            @Dialogue3.canceled -= instance.OnDialogue3;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -387,5 +474,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSubmitDialogue(InputAction.CallbackContext context);
         void OnReleaseCharInteraction(InputAction.CallbackContext context);
         void OnMousePressed(InputAction.CallbackContext context);
+        void OnDialogue1(InputAction.CallbackContext context);
+        void OnDialogue2(InputAction.CallbackContext context);
+        void OnDialogue3(InputAction.CallbackContext context);
     }
 }
