@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcsToSpawn:
   - {fileID: 1995249318571847894, guid: 896e14873e391b0448748af575437165, type: 3}
+  - {fileID: 6884725488322997360, guid: 75a34d0656f4c414f94db5a2b339a2ed, type: 3}
   spawnPoint: {fileID: 2740149156529393437}
   tableWapoint: {fileID: 5590868864084968084}
   exitWapoint: {fileID: 8637932788006170960}

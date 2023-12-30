@@ -1,4 +1,5 @@
 using Scripts.PlayerInput;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Scripts.Interaction
 {
     public class DialogObject : InteractableObjectBase
     {
-
+        public static Action OnObjectWasRetrieved;
         [SerializeField] GameObject objectToSpawn;
         [SerializeField] bool isDroppingObject = false;
 
@@ -64,20 +65,21 @@ namespace Scripts.Interaction
                     var spawnPosition = GameObject.FindWithTag("TableObjectSpawnerPosition").transform.position;
                     var go = Instantiate(objectToSpawn);
                     go.transform.position = spawnPosition;
-                    Destroy(this.gameObject);
+                    //Destroy(this.gameObject);
                 }
                 else
                 {
                     Debug.Log("object retrived");
                     //if object is in table
                     var a = GameObject.FindAnyObjectByType<InspectableObject>();
-                    if (a != null)
+                    if (a == null)
                         return;
                     if (a.IsInteractable)
                     {
                         dialogueManager.CanExitDialogue = false;
                         Destroy(a.gameObject);
-                        Destroy(this.gameObject);
+                        OnObjectWasRetrieved?.Invoke();
+                        //Destroy(this.gameObject);
                     }
                 }
             }

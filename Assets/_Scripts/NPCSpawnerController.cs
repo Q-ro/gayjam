@@ -24,11 +24,13 @@ public class NPCSpawnerController : MonoBehaviour
         SpawnNPC();
         FadeInNPC();
         InspectableObject.OnObjectWasInspected += FadeOutNPC;
+        DialogObject.OnObjectWasRetrieved += FadeOutNPC;
     }
 
     private void FadeOutNPC()
     {
         StopAllCoroutines();
+        npcToSpawnIndex++;
         StartCoroutine(COMoveToTarget(exitWapoint.position, 3.5f, () =>
         {
             StartCoroutine(CODelayedSpawn());
@@ -61,7 +63,7 @@ public class NPCSpawnerController : MonoBehaviour
 
     private void SpawnNPC()
     {
-        if (npcToSpawnIndex > npcsToSpawn.Length)
+        if (npcToSpawnIndex >= npcsToSpawn.Length)
             return;
         currentNPC = Instantiate(npcsToSpawn[npcToSpawnIndex]);
         currentNPC.transform.position = spawnPoint.position;
