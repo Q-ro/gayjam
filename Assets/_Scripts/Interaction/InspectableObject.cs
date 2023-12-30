@@ -1,4 +1,6 @@
 using Scripts.PlayerInput;
+using Scripts.PlayerMovement;
+using System;
 using UnityEngine;
 
 namespace Scripts.Interaction
@@ -18,8 +20,18 @@ namespace Scripts.Interaction
             base.Start();
             InputManager.OnLookMovement += OnLookMovementPerformed;
             InputManager.OnPlayerMouseHeldPerformed += OnPlayerMouseHeldPerformed;
+            PlayerMovementController.OnLockPlayerMovementPerformed += OnLockedCharaterMovementStateChange;
             ChairInteractionController.OnInteractWithChair += OnPlayerInteractionWithChairPerformed;
 
+        }
+
+        private void OnLockedCharaterMovementStateChange(bool obj)
+        {
+            if (obj)
+                return;
+
+            if (isInteracting)
+                StopInspectedObject();
         }
 
         private void OnDestroy()
@@ -35,7 +47,7 @@ namespace Scripts.Interaction
 
         private void OnLookMovementPerformed(Vector2 vector)
         {
-            if (!isInteracting || !isMouseDragged)
+            if (!isInteracting || !isMouseDragged || !isPlayerSitted)
                 return;
 
             deltaRotationX = vector.x;
@@ -49,6 +61,7 @@ namespace Scripts.Interaction
         public override void Interact()
         {
             if (!isPlayerSitted) return;
+
             PlayerInteractObjectController.OnInteractionStarted?.Invoke();
             isInteracting = !isInteracting;
             rigidBody.useGravity = !isInteracting;
@@ -57,17 +70,31 @@ namespace Scripts.Interaction
 
             if (isInteracting)
             {
-                var inpectorHolder = GameObject.FindWithTag("ObjectInspectorHolder");
-                if (inpectorHolder != null)
-                {
-                    initialPosition = this.transform.position;
-                    this.transform.position = inpectorHolder.transform.position;
-                }
+                StartInspectingObject();
             }
             else
             {
-                this.transform.position = initialPosition;
+                StopInspectedObject();
             }
+        }
+
+        private void StartInspectingObject()
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            var inpectorHolder = GameObject.FindWithTag("ObjectInspectorHolder");
+            if (inpectorHolder != null)
+            {
+                initialPosition = this.transform.position;
+                this.transform.position = inpectorHolder.transform.position;
+            }
+        }
+
+        private void StopInspectedObject()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            this.transform.position = initialPosition;
         }
     }
 }

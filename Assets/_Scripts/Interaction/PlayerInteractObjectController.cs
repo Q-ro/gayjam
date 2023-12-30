@@ -1,5 +1,6 @@
 using Scripts.Interaction;
 using Scripts.PlayerInput;
+using Scripts.PlayerMovement;
 using System;
 using UnityEngine;
 
@@ -13,9 +14,10 @@ public class PlayerInteractObjectController : MonoBehaviour
 
     private void Start()
     {
-        InputManager.OnInteract += OnInteractPerformed;
+        InputManager.OnInteract += OnInteractPerformed;        
         PlayerObjectPickupController.OnPickupPerformed += OnPickupPerformed;
     }
+
 
     private void OnDestroy()
     {

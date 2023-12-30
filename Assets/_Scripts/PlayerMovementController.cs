@@ -58,8 +58,8 @@ namespace Scripts.PlayerMovement
         private void OnMovementLocked(bool obj)
         {
             isMovementLocked = obj;
-            if (isMovementLocked)
-                return;
+            if (!isMovementLocked)
+                isInteracting = false;
         }
 
         private void OnInteractionStarted()
