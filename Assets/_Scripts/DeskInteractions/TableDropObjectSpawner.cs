@@ -12,7 +12,6 @@ public class TableDropObjectSpawner : MonoBehaviour
 
     private void SpawnObject(GameObject objectToSpawn)
     {
-        var go = Instantiate(objectToSpawn);
-        go.transform.position = this.transform.position;
+        var go = Instantiate(objectToSpawn, this.transform.position, Quaternion.identity, null);
     }
 }

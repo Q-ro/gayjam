@@ -38,7 +38,8 @@ namespace Scripts.Interaction
                 return;
 
             if (isInteracting)
-                StopInspectedObject();
+                EndInteraction();
+            //StopInspectedObject();
         }
 
         private void OnDestroy()

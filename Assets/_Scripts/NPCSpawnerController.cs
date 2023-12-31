@@ -36,8 +36,10 @@ public class NPCSpawnerController : MonoBehaviour
 
         StartCoroutine(COMoveToTarget(exitWapoint.position, 3.5f, () =>
         {
-            StartCoroutine(CODelayedSpawn());
             Destroy(currentNPC);
+            if (npcToSpawnIndex >= npcsToSpawn.Length)
+                return;
+            StartCoroutine(CODelayedSpawn());
         }));
     }
 
