@@ -1582,7 +1582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7619518503614047029, guid: 17de797ec6f303f46829d4ae8a4641ce, type: 3}
       propertyPath: npcsToSpawn.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7619518503614047029, guid: 17de797ec6f303f46829d4ae8a4641ce, type: 3}
       propertyPath: npcsToSpawn.Array.data[0]
@@ -1608,6 +1608,14 @@ PrefabInstance:
       propertyPath: npcsToSpawn.Array.data[5]
       value: 
       objectReference: {fileID: 964450331159174557, guid: 1b34ce88491920b459cc8dc7c6058f9a, type: 3}
+    - target: {fileID: 7619518503614047029, guid: 17de797ec6f303f46829d4ae8a4641ce, type: 3}
+      propertyPath: npcsToSpawn.Array.data[6]
+      value: 
+      objectReference: {fileID: 594773237702497982, guid: 77868ade142ddc54d88f119c3ae1a1a8, type: 3}
+    - target: {fileID: 7619518503614047029, guid: 17de797ec6f303f46829d4ae8a4641ce, type: 3}
+      propertyPath: npcsToSpawn.Array.data[7]
+      value: 
+      objectReference: {fileID: 5591785417392036105, guid: da165c410bef03e4aad3c77bc4984d7b, type: 3}
     - target: {fileID: 8637932788006170960, guid: 17de797ec6f303f46829d4ae8a4641ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.01

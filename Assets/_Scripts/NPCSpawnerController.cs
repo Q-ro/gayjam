@@ -43,6 +43,10 @@ public class NPCSpawnerController : MonoBehaviour
                 Debug.Log("Deleting family photo");
                 FamilyPhotoController.OnReturnPolaroid?.Invoke();
             }
+            if (npcToSpawnIndex == 7){
+                Debug.Log("Changing radio sound");
+                RadioAudioController.OnSetRadioStatic?.Invoke();
+            }
             if (npcToSpawnIndex >= npcsToSpawn.Length)
                 return;
 
