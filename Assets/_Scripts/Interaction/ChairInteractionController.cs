@@ -22,7 +22,7 @@ public class ChairInteractionController : InteractableObjectBase
         InspectableObject.OnObjectSpawn += UpdateIsSeated;
     }
 
-    
+
 
     private void OnDestroy()
     {
@@ -39,7 +39,7 @@ public class ChairInteractionController : InteractableObjectBase
     {
         if (isSeated)
         {
-            PlayerMovementController.MovementPlayerToPosition(stardChairPlayerTargetPosition.transform.position, standAnimationSpeed,
+            PlayerMovementController.MovementPlayerToPosition(stardChairPlayerTargetPosition.transform.position, standAnimationSpeed, false,
             () =>
                {
                    isSeated = false;
@@ -58,7 +58,7 @@ public class ChairInteractionController : InteractableObjectBase
             Physics.IgnoreLayerCollision(6, 2, true);
             gameObject.layer = 2;
             PlayerMovementController.OnLockPlayerMovementPerformed(true);
-            PlayerMovementController.MovementPlayerToPosition(sitChairPlayerTargetPosition.transform.position, sitAnimationSpeed, () => { });
+            PlayerMovementController.MovementPlayerToPosition(sitChairPlayerTargetPosition.transform.position, sitAnimationSpeed, true, () => { });
             OnInteractWithChair?.Invoke(true);
         }
     }

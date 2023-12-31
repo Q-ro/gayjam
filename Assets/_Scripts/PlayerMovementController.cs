@@ -1,6 +1,7 @@
 using Scripts.PlayerInput;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 namespace Scripts.PlayerMovement
@@ -10,7 +11,7 @@ namespace Scripts.PlayerMovement
     public class PlayerMovementController : MonoBehaviour
     {
         public static Action<bool> OnLockPlayerMovementPerformed;
-        public static Action<Vector3, float, Action> MovementPlayerToPosition;
+        public static Action<Vector3, float, bool, Action> MovementPlayerToPosition;
 
         #region Inspector Variables
 
@@ -37,10 +38,16 @@ namespace Scripts.PlayerMovement
             MovementPlayerToPosition += OnMovePlayerToPosition;
         }
 
-        private void OnMovePlayerToPosition(Vector3 vector, float speed, Action callback)
+        private void OnMovePlayerToPosition(Vector3 targetPosition, float speed, bool interpolate, Action callback)
         {
             StopAllCoroutines();
-            StartCoroutine(COMoveToTarget(vector, speed, callback));
+            if (interpolate)
+                StartCoroutine(COMoveToTarget(targetPosition, speed, callback));
+            else
+            {
+                transform.position = targetPosition;
+                callback?.Invoke();
+            }
         }
 
         IEnumerator COMoveToTarget(Vector3 targetPosition, float speed, Action callback)
