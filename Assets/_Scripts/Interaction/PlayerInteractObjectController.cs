@@ -64,7 +64,6 @@ public class PlayerInteractObjectController : MonoBehaviour
                 heldInteractableObject = null;
             }
         } else {
-            Debug.Log(interactableObject);
             var interactableScript = interactableObject.GetComponent<InteractableObjectBase>();
             if(interactableScript != null){
                 interactableScript.Interact();

@@ -3,6 +3,7 @@ using UnityEngine;
 using Ink.Runtime;
 using Scripts.PlayerInput;
 using System.Collections.Generic;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -131,6 +132,7 @@ public class DialogueManager : MonoBehaviour
                 canExitDialogue = true;
             }
         }
+        CheckIfBubbleShouldDisplay();
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)
@@ -144,7 +146,6 @@ public class DialogueManager : MonoBehaviour
 
     private void ExitDialogueMode()
     {
-        Debug.Log("Exiting Dialogue Mode - Manager");
         dialogueIsPlaying = false;
         dialogueBubble.SetActive(false);
         dialoguePanel.SetActive(false);
@@ -218,10 +219,17 @@ public class DialogueManager : MonoBehaviour
                     choice3.text = "";
                     break;
                 default:
-                    Debug.LogError("The number of choices has been manipulated to a number not supported.");
                     break;
             }
             index++;
+        }
+    }
+
+    private void CheckIfBubbleShouldDisplay(){
+        if(String.IsNullOrWhiteSpace(dialogueText.text)){
+                dialogueBubble.SetActive(false);
+        } else {
+            dialogueBubble.SetActive(true);
         }
     }
 }
