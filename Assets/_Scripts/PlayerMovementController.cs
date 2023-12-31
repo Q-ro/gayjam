@@ -45,7 +45,7 @@ namespace Scripts.PlayerMovement
 
         IEnumerator COMoveToTarget(Vector3 targetPosition, float speed, Action callback)
         {
-            while (Vector3.Distance(transform.position, targetPosition) > 0.2f)  // Adjust tolerance as needed
+            while (Vector3.Distance(transform.position, targetPosition) > 0.01f)  // Adjust tolerance as needed
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
                 yield return null;
