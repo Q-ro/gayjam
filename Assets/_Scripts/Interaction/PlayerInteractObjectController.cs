@@ -44,23 +44,33 @@ public class PlayerInteractObjectController : MonoBehaviour
     private void DoInteraction(GameObject interactableObject)
     {
         //InteractableObjectBase interactable;
-        if (heldInteractableObject == null)
-        {
-            if (interactableObject.TryGetComponent<InteractableObjectBase>(out heldInteractableObject))
+        if(gameObject.layer == 7){
+            if (heldInteractableObject == null)
             {
-                if (!heldInteractableObject.IsInteractable)
-                    return;
-                //heldInteractableObject = heldInteractableObject;
+                if (interactableObject.TryGetComponent<InteractableObjectBase>(out heldInteractableObject))
+                {
+                    if (!heldInteractableObject.IsInteractable)
+                        return;
+                    //heldInteractableObject = heldInteractableObject;
+                    heldInteractableObject.Interact();
+                    heldInteractableObject.StartInteraction();
+                    //OnInteractionStarted?.Invoke();
+                }
+            }
+            else
+            {
                 heldInteractableObject.Interact();
-                heldInteractableObject.StartInteraction();
-                //OnInteractionStarted?.Invoke();
+                heldInteractableObject.EndInteraction();
+                heldInteractableObject = null;
+            }
+        } else {
+            Debug.Log(interactableObject);
+            var interactableScript = interactableObject.GetComponent<InteractableObjectBase>();
+            if(interactableScript != null){
+                interactableScript.Interact();
+                interactableScript.StartInteraction();
             }
         }
-        else
-        {
-            heldInteractableObject.Interact();
-            heldInteractableObject.EndInteraction();
-            heldInteractableObject = null;
-        }
+        
     }
 }

@@ -77,7 +77,6 @@ public class NPCSpawnerController : MonoBehaviour
     {
         if (npcToSpawnIndex >= npcsToSpawn.Length)
             return;
-
         currentNPC = Instantiate(npcsToSpawn[npcToSpawnIndex]);
         currentNPC.transform.position = spawnPoint.position;
         npcToSpawnIndex++;

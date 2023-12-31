@@ -272,6 +272,7 @@ MonoBehaviour:
   materialDisplay: {fileID: 8298933260411247093}
   brandlDisplay: {fileID: 1339716823668093355}
   yearDisplay: {fileID: 2627208088924730622}
+  descriptionDisplay: {fileID: 4122035069737231864}
   signatureDisplay: {fileID: 8001002500674237942}
   normalSignauture: {fileID: 21300000, guid: 1f33243af1d759f4cbfbc0129571eed7, type: 3}
   badSignauture: {fileID: 21300000, guid: 85a57a2f4a24f8f4fa112e44e211e9f3, type: 3}
@@ -656,6 +657,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 103217702041442894, guid: 1868705e406dce94db79c99a4291b878, type: 3}
   m_PrefabInstance: {fileID: 661629838192485416}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4122035069737231864 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3466361981951328720, guid: 1868705e406dce94db79c99a4291b878, type: 3}
+  m_PrefabInstance: {fileID: 661629838192485416}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6244388199971072407 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6883207973047995839, guid: 1868705e406dce94db79c99a4291b878, type: 3}

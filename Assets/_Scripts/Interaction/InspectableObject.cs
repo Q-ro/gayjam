@@ -9,6 +9,7 @@ namespace Scripts.Interaction
     public class InspectableObject : InteractableObjectBase
     {
         public static Action OnObjectWasInspected;
+        public static Action OnObjectSpawn;
 
         [SerializeField] InspectableInfo inspectableInfo;
 
@@ -29,7 +30,7 @@ namespace Scripts.Interaction
             InputManager.OnPlayerMouseHeldPerformed += OnPlayerMouseHeldPerformed;
             PlayerMovementController.OnLockPlayerMovementPerformed += OnLockedCharaterMovementStateChange;
             ChairInteractionController.OnInteractWithChair += OnPlayerInteractionWithChairPerformed;
-
+            OnObjectSpawn?.Invoke();
         }
 
         private void OnLockedCharaterMovementStateChange(bool obj)
@@ -51,7 +52,10 @@ namespace Scripts.Interaction
         }
 
         private void OnPlayerMouseHeldPerformed(bool obj) => isMouseDragged = obj;
-        private void OnPlayerInteractionWithChairPerformed(bool obj) => isPlayerSitted = obj;
+        //private void OnPlayerInteractionWithChairPerformed(bool obj) => isPlayerSitted = obj;
+        private void OnPlayerInteractionWithChairPerformed(bool obj){
+            isPlayerSitted = obj;            
+        }
 
 
         private void OnLookMovementPerformed(Vector2 vector)
@@ -110,7 +114,6 @@ namespace Scripts.Interaction
         public override void StartInteraction()
         {
             if (!isPlayerSitted) return;
-
             PlayerInteractObjectController.IsInteractionStarted?.Invoke(true);
             UpdateInteractablePhysicProperties(true);
             StartInspectingObject();

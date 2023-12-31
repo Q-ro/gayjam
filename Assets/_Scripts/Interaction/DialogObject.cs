@@ -46,7 +46,6 @@ namespace Scripts.Interaction
             {
                 dialogueManager.DialogueBubble = bubbleGameObject;
                 dialogueManager.DialogueText = bubbleText;
-                Debug.Log("Entering Dialogue Mode");
                 dialogueManager.EnterDialogueMode(inkJson);
             }
 

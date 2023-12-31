@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2429708281315876560
+--- !u!1001 &4320473980079428705
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e834da2507270174484b28762cd9ef8c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.21315995
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e834da2507270174484b28762cd9ef8c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.067
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e834da2507270174484b28762cd9ef8c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.249019
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e834da2507270174484b28762cd9ef8c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,15 +54,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e834da2507270174484b28762cd9ef8c, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4191832063937611648, guid: e834da2507270174484b28762cd9ef8c, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4320655017762239252, guid: e834da2507270174484b28762cd9ef8c, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -70,20 +70,26 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e834da2507270174484b28762cd9ef8c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8482304078079845647}
+      addedObject: {fileID: 2189087505534730618}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e834da2507270174484b28762cd9ef8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 928034760232466656}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e834da2507270174484b28762cd9ef8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1816006818029596121}
   m_SourcePrefab: {fileID: 100100000, guid: e834da2507270174484b28762cd9ef8c, type: 3}
---- !u!1 &3276763586254693249 stripped
+--- !u!1 &3977806433801398576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e834da2507270174484b28762cd9ef8c, type: 3}
-  m_PrefabInstance: {fileID: 2429708281315876560}
+  m_PrefabInstance: {fileID: 4320473980079428705}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &8482304078079845647
+--- !u!64 &2189087505534730618
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3276763586254693249}
+  m_GameObject: {fileID: 3977806433801398576}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -96,6 +102,53 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6108069920793034404, guid: 0dde3aa97c2de2f479a6997866a820d8, type: 3}
+--- !u!54 &928034760232466656
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977806433801398576}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!114 &1816006818029596121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977806433801398576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f57a959250a094449affde0909f9028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inspectableInfo:
+    name: Wallet
+    color: Black
+    material: Leather
+    brand: '-'
+    year: '-'
+    description: Has some money!
+    signatureQuality: 0

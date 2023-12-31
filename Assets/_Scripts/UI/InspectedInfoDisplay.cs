@@ -35,6 +35,7 @@ namespace Scripts.UI
         [SerializeField] private TextMeshProUGUI materialDisplay;
         [SerializeField] private TextMeshProUGUI brandlDisplay;
         [SerializeField] private TextMeshProUGUI yearDisplay;
+        [SerializeField] private TextMeshProUGUI descriptionDisplay;
         [SerializeField] private Image signatureDisplay;
         [SerializeField] private Sprite normalSignauture;
         [SerializeField] private Sprite badSignauture;
@@ -60,6 +61,7 @@ namespace Scripts.UI
             materialDisplay.text = info.material;
             brandlDisplay.text = info.brand;
             yearDisplay.text = info.year;
+            descriptionDisplay.text = info.description;
             switch(info.signatureQuality){
                 case SignatureQuality.Normal:
                     signatureDisplay.sprite = normalSignauture;

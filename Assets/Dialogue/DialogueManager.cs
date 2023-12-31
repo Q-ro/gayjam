@@ -95,7 +95,6 @@ public class DialogueManager : MonoBehaviour
 
     private void OnInteractPerformed()
     {
-        Debug.Log(canExitDialogue);
         if (canExitDialogue)
         {
             ExitDialogueMode();
@@ -126,9 +125,11 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            exitLbl.SetActive(true);
-            nextLbl.SetActive(false);
-            canExitDialogue = true;
+            if(currentStory.currentChoices.Count == 0){
+                exitLbl.SetActive(true);
+                nextLbl.SetActive(false);
+                canExitDialogue = true;
+            }
         }
     }
 
