@@ -49,6 +49,7 @@ namespace Scripts.Interaction
             InputManager.OnPlayerMouseHeldPerformed -= OnPlayerMouseHeldPerformed;
             PlayerMovementController.OnLockPlayerMovementPerformed -= OnLockedCharaterMovementStateChange;
             ChairInteractionController.OnInteractWithChair -= OnPlayerInteractionWithChairPerformed;
+            EndInteraction();
         }
 
         private void OnPlayerMouseHeldPerformed(bool obj) => isMouseDragged = obj;

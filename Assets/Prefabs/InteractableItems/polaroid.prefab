@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectableInfo:
     name: Polaroid
-    color: Pink
+    color: White
     material: Plastic
     brand: CAMMON
     year: 

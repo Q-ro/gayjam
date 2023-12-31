@@ -2,7 +2,7 @@
 === Main ===
 
 *[Lost memours office, my name is John, how may I help you?]
--Hi, yeah, my name is Monica, I found this really pretty pink camera at the train I was in
+-Hi, yeah, my name is Monica, I found this really pretty white camera at the train I was in
 -Its a really nice camera, kinda wanna keep it, but someone must really miss it
 *[Thats very thoughtfull Monica, do you happen to remember exactly where it was?]
 -Umm, no? Im traveling alone
