@@ -1,3 +1,4 @@
+using PSXShaderKit;
 using Scripts.Interaction;
 using System;
 using System.Collections;
@@ -39,6 +40,7 @@ public class NPCSpawnerController : MonoBehaviour
             Debug.Log("Index: " + npcToSpawnIndex);
             Destroy(currentNPC);
             
+            
             if (npcToSpawnIndex == 4){
                 Debug.Log("Deleting family photo");
                 FamilyPhotoController.OnReturnPolaroid?.Invoke();
@@ -46,6 +48,17 @@ public class NPCSpawnerController : MonoBehaviour
             if (npcToSpawnIndex == 7){
                 Debug.Log("Changing radio sound");
                 RadioAudioController.OnSetRadioStatic?.Invoke();
+            }
+            if (npcToSpawnIndex == 10){
+                Debug.Log("Deleting diploma");
+                DiplomaController.OnReturnBook?.Invoke();
+            }
+            if(npcToSpawnIndex == 12){
+                Debug.Log("Changing background sound");
+                BackgroundNoiseAudioController.OnSetSilenceBackgroundNoise?.Invoke();
+            }
+            if(npcToSpawnIndex == 14){
+                PSXPostProcessEffect.OnGlassesReturn?.Invoke();
             }
             if (npcToSpawnIndex >= npcsToSpawn.Length)
                 return;

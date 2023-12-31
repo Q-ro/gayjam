@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,23 @@ namespace PSXShaderKit
 {
     public class PSXPostProcessEffect : MonoBehaviour
     {
+        public static Action OnGlassesReturn;
+        private IEnumerator UpdateValueOverTime(float targetValue, float duration){
+            float elapsedTime = 0;
+            float startValue = 0.35f;
+            while (elapsedTime < duration)
+            {
+                float t = elapsedTime / duration;
+                float newValue = Mathf.Lerp(startValue, targetValue, t);
+                _PixelationFactor = newValue;
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            _PixelationFactor = targetValue;
+        }
+        private void ChangePixelation() {
+            StartCoroutine(UpdateValueOverTime(0.1f, 10));
+        }
         private enum ColorEmulationMode
         {
             Off = 0,
@@ -72,6 +90,7 @@ namespace PSXShaderKit
 
         void Start()
         {
+            OnGlassesReturn += ChangePixelation;
             if (_PostProcessShader != null && _PostProcessShader.isSupported)
             {
                 _PostProcessMaterial = new Material(_PostProcessShader);
