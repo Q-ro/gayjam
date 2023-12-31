@@ -8,8 +8,8 @@
 - A bunker ?
 *[Yeah ! that's it, youre really smart little girl, the astrophyziks of rock and science?, would this happen to be your book ?]
 - You mean astrophysics of rocket science?
-*[Yeah ! that's it, Such an advance book for a little miss like yourself !]
-- Can I have my book now ?
+*[Yeah ! that's it, Such an advance book for a little miss like yourself ! you know ? I used to love rock and science when i was a teen, i even had a telezkope and was abnle to see a blackhole with it]
+- Right... So, can I have my book now ?
 *[oh, osrry to keep waiting, here is teh book *smile*!]
 - Thanks god ! finally!, Geez...
 *[kids these days]
