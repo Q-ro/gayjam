@@ -39,6 +39,13 @@ public class NPCSpawnerController : MonoBehaviour
             Destroy(currentNPC);
             if (npcToSpawnIndex >= npcsToSpawn.Length)
                 return;
+
+            //TODO: Define NPC for to trigger the events here
+            if (npcToSpawnIndex > 5)
+                RadioAudioController.OnSetRadioStatic?.Invoke();
+            if (npcToSpawnIndex > 8)
+                BackgroundNoiseAudioController.OnSetSilenceBackgroundNoise?.Invoke();
+
             StartCoroutine(CODelayedSpawn());
         }));
     }
@@ -74,8 +81,6 @@ public class NPCSpawnerController : MonoBehaviour
         currentNPC = Instantiate(npcsToSpawn[npcToSpawnIndex]);
         currentNPC.transform.position = spawnPoint.position;
         npcToSpawnIndex++;
-        if (npcToSpawnIndex > 5)
-            RadioAudioController.OnSetRadioStatic?.Invoke();
     }
 
 }
