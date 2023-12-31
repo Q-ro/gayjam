@@ -47,8 +47,8 @@ namespace Scripts.Interaction
                 dialogueManager.DialogueBubble = bubbleGameObject;
                 dialogueManager.DialogueText = bubbleText;
                 dialogueManager.EnterDialogueMode(inkJson);
+                IsInteractable = false;
             }
-
         }
 
         public override void EndInteraction()
@@ -60,25 +60,19 @@ namespace Scripts.Interaction
         {
             if (dialogueManager.CanExitDialogue)
             {
-                //Debug.Log("Exit dialog");
-
                 if (isDroppingObject)
                 {
                     if (objectToSpawn == null)
                         return;
                     dialogueManager.CanExitDialogue = false;
-                    IsInteractable = false;
                     TableDropObjectSpawner.OnSpawnDropObject?.Invoke(objectToSpawn);
                 }
                 else
                 {
-                    Debug.Log("object retrived");
                     //if object is in table
                     var a = GameObject.FindAnyObjectByType<InspectableObject>();
                     if (a == null)
                         return;
-                    Debug.Log("Object is not null");
-                    Debug.Log("object destroyed");
                     dialogueManager.CanExitDialogue = false;
                     Destroy(a.gameObject);
                     OnObjectWasRetrieved?.Invoke();

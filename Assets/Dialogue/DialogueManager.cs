@@ -109,7 +109,7 @@ public class DialogueManager : MonoBehaviour
 
     private void ContinueStory()
     {
-        if (currentStory.canContinue)
+        if (currentStory.canContinue && dialogueIsPlaying)
         {
             nextLbl.SetActive(true);
             // set the text for the current dialogue line
