@@ -28,20 +28,30 @@ public class ChairInteractionController : InteractableObjectBase
 
     private void OnCharacterMovementReleased(bool obj)
     {
-        if(isSeated){
-            PlayerMovementController.MovementPlayerToPosition(stardChairPlayerTargetPosition.transform.position, standAnimationSpeed, () => { Physics.IgnoreLayerCollision(6, 3, false); OnInteractWithChair?.Invoke(false); isSeated = false;});
+        if (isSeated)
+        {
+            PlayerMovementController.MovementPlayerToPosition(stardChairPlayerTargetPosition.transform.position, standAnimationSpeed,
+            () =>
+               {
+                   isSeated = false;
+                   Physics.IgnoreLayerCollision(6, 3, false);
+                   gameObject.layer = 0;
+                   OnInteractWithChair?.Invoke(false);
+               });
         }
     }
 
     public override void Interact()
     {
-        if(!isSeated){
+        if (!isSeated)
+        {
             isSeated = true;
             Physics.IgnoreLayerCollision(6, 3, true);
+            gameObject.layer = 2;
             PlayerMovementController.OnLockPlayerMovementPerformed(true);
             PlayerMovementController.MovementPlayerToPosition(sitChairPlayerTargetPosition.transform.position, sitAnimationSpeed, () => { });
             OnInteractWithChair?.Invoke(true);
-        }   
+        }
     }
 
     public override void StartInteraction()
