@@ -61,12 +61,12 @@ namespace Scripts.PlayerInput
 
         private void OnEnable()
         {
-            playerControls.Enable();
+            playerControls?.Enable();
         }
 
         private void OnDisable()
         {
-            playerControls.Disable();
+            playerControls?.Disable();
         }
 
         #endregion

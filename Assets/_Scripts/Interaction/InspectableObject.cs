@@ -20,6 +20,8 @@ namespace Scripts.Interaction
 
         bool isPlayerSitted;
 
+        bool wasInspected;
+
         protected override void Start()
         {
             base.Start();
@@ -43,6 +45,7 @@ namespace Scripts.Interaction
         {
             InputManager.OnLookMovement -= OnLookMovementPerformed;
             InputManager.OnPlayerMouseHeldPerformed -= OnPlayerMouseHeldPerformed;
+            PlayerMovementController.OnLockPlayerMovementPerformed -= OnLockedCharaterMovementStateChange;
             ChairInteractionController.OnInteractWithChair -= OnPlayerInteractionWithChairPerformed;
         }
 
@@ -65,22 +68,15 @@ namespace Scripts.Interaction
 
         public override void Interact()
         {
-            if (!isPlayerSitted) return;
 
-            PlayerInteractObjectController.OnInteractionStarted?.Invoke();
-            isInteracting = !isInteracting;
+        }
+
+        private void UpdateInteractablePhysicProperties(bool interacting)
+        {
+            isInteracting = interacting;
             rigidBody.useGravity = !isInteracting;
             rigidBody.constraints = isInteracting ? RigidbodyConstraints.FreezePosition : RigidbodyConstraints.None;
             Physics.IgnoreLayerCollision(6, 3, isInteracting);
-
-            if (isInteracting)
-            {
-                StartInspectingObject();
-            }
-            else
-            {
-                StopInspectedObject();
-            }
         }
 
         private void StartInspectingObject()
@@ -103,17 +99,28 @@ namespace Scripts.Interaction
             Cursor.visible = false;
             this.transform.position = initialPosition;
             InspectedInfoDisplay.OnShowInfoDisplay?.Invoke(false);
-            OnObjectWasInspected?.Invoke();
+            if (!wasInspected)
+            {
+                OnObjectWasInspected?.Invoke();
+                wasInspected = true;
+            }
         }
 
         public override void StartInteraction()
         {
+            if (!isPlayerSitted) return;
+
+            PlayerInteractObjectController.IsInteractionStarted?.Invoke(true);
+            UpdateInteractablePhysicProperties(true);
+            StartInspectingObject();
 
         }
 
         public override void EndInteraction()
         {
-
+            PlayerInteractObjectController.IsInteractionStarted?.Invoke(false);
+            UpdateInteractablePhysicProperties(false);
+            StopInspectedObject();
         }
     }
 }

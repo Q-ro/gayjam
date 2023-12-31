@@ -16,6 +16,13 @@ namespace Scripts.Interaction
         [SerializeField] private GameObject bubbleGameObject;
         [SerializeField] private TextMeshProUGUI bubbleText;
         private DialogueManager dialogueManager;
+        private GameObject tableObjectSpawnerPosition;
+
+        public void SetUpTableSpawnPosition(GameObject tableObjectSpawnerPosition)
+        {
+            this.tableObjectSpawnerPosition = tableObjectSpawnerPosition;
+        }
+
         protected override void Start()
         {
             base.Start();
@@ -54,7 +61,7 @@ namespace Scripts.Interaction
         {
             if (dialogueManager.CanExitDialogue)
             {
-                Debug.Log("Exit dialog");
+                //Debug.Log("Exit dialog");
 
                 if (isDroppingObject)
                 {
@@ -62,10 +69,7 @@ namespace Scripts.Interaction
                         return;
                     dialogueManager.CanExitDialogue = false;
                     IsInteractable = false;
-                    var spawnPosition = GameObject.FindWithTag("TableObjectSpawnerPosition").transform.position;
-                    var go = Instantiate(objectToSpawn);
-                    go.transform.position = spawnPosition;
-                    //Destroy(this.gameObject);
+                    TableDropObjectSpawner.OnSpawnDropObject?.Invoke(objectToSpawn);
                 }
                 else
                 {

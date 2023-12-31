@@ -19,18 +19,18 @@ namespace Scripts.Interaction
         private void Start()
         {
             InputManager.OnPickup += HandlePickup;
-            PlayerInteractObjectController.OnInteractionStarted += OnInteractionStarted;
+            PlayerInteractObjectController.IsInteractionStarted += OnInteractionStarted;
         }
 
         private void OnDestroy()
         {
             InputManager.OnPickup -= HandlePickup;
-            PlayerInteractObjectController.OnInteractionStarted -= OnInteractionStarted;
+            PlayerInteractObjectController.IsInteractionStarted -= OnInteractionStarted;
         }
 
-        private void OnInteractionStarted()
+        private void OnInteractionStarted(bool interacting)
         {
-            isInteracting = !isInteracting;
+            isInteracting = interacting;
         }
 
         private void Update()

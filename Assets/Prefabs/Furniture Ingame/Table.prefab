@@ -161,9 +161,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6861319793055647073}
+  - component: {fileID: 7586018208757929663}
   m_Layer: 0
   m_Name: Table Drop Object Spawner
-  m_TagString: Untagged
+  m_TagString: TableObjectSpawnerPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,6 +184,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3159212423299137778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7586018208757929663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957247382439755477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38109501d435ed45abfce6f5444a272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3746596624819695035
 PrefabInstance:
   m_ObjectHideFlags: 0

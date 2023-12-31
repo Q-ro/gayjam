@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerInteractObjectController : MonoBehaviour
 {
-    public static Action OnInteractionStarted;
+    public static Action<bool> IsInteractionStarted;
 
     [SerializeField] float pickupRange = 20f;
     bool isHoldingObject = false;
@@ -14,7 +14,7 @@ public class PlayerInteractObjectController : MonoBehaviour
 
     private void Start()
     {
-        InputManager.OnInteract += OnInteractPerformed;        
+        InputManager.OnInteract += OnInteractPerformed;
         PlayerObjectPickupController.OnPickupPerformed += OnPickupPerformed;
     }
 

@@ -14,23 +14,26 @@ public class NPCSpawnerController : MonoBehaviour
     [SerializeField] float spawnDelay;
 
     GameObject currentNPC;
-    int npcToSpawnIndex = 0;
+    int npcToSpawnIndex; //hack
 
-    //Start is called before the first frame update
     void Start()
     {
-        //if (npcsToSpawn != null || npcsToSpawn.Length <= 0)
-        //    return;
         SpawnNPC();
         FadeInNPC();
         InspectableObject.OnObjectWasInspected += FadeOutNPC;
         DialogObject.OnObjectWasRetrieved += FadeOutNPC;
     }
 
+    private void OnDestroy()
+    {
+        InspectableObject.OnObjectWasInspected -= FadeOutNPC;
+        DialogObject.OnObjectWasRetrieved -= FadeOutNPC;
+    }
+
     private void FadeOutNPC()
     {
         StopAllCoroutines();
-        npcToSpawnIndex++;
+
         StartCoroutine(COMoveToTarget(exitWapoint.position, 3.5f, () =>
         {
             StartCoroutine(CODelayedSpawn());
@@ -65,8 +68,10 @@ public class NPCSpawnerController : MonoBehaviour
     {
         if (npcToSpawnIndex >= npcsToSpawn.Length)
             return;
+
         currentNPC = Instantiate(npcsToSpawn[npcToSpawnIndex]);
         currentNPC.transform.position = spawnPoint.position;
+        npcToSpawnIndex++;
     }
 
 }

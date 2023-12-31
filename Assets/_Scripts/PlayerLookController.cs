@@ -14,12 +14,12 @@ namespace Scripts.PlayerMovement
         void Start()
         {
             InputManager.OnLookMovement += OnLookMovementPerformed;
-            PlayerInteractObjectController.OnInteractionStarted += OnInteractionStarted;
+            PlayerInteractObjectController.IsInteractionStarted += OnInteractionStarted;
         }
 
-        private void OnInteractionStarted()
+        private void OnInteractionStarted(bool interacting)
         {
-            isInteracting = !isInteracting;
+            isInteracting = interacting;
         }
 
         private void OnLookMovementPerformed(Vector2 mousemovement)

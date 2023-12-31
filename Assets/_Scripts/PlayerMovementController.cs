@@ -32,7 +32,7 @@ namespace Scripts.PlayerMovement
         {
             controller = gameObject.GetComponent<CharacterController>();
             InputManager.OnDirectionMovement += PerformMovement;
-            PlayerInteractObjectController.OnInteractionStarted += OnInteractionStarted;
+            PlayerInteractObjectController.IsInteractionStarted += OnInteractionStarted;
             OnLockPlayerMovementPerformed += OnMovementLocked;
             MovementPlayerToPosition += OnMovePlayerToPosition;
         }
@@ -62,9 +62,9 @@ namespace Scripts.PlayerMovement
                 isInteracting = false;
         }
 
-        private void OnInteractionStarted()
+        private void OnInteractionStarted(bool interacting)
         {
-            isInteracting = !isInteracting;
+            isInteracting = interacting;
         }
 
         private void PerformMovement(Vector3 vector)
