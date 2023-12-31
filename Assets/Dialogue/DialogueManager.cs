@@ -4,6 +4,7 @@ using Ink.Runtime;
 using Scripts.PlayerInput;
 using System.Collections.Generic;
 using System;
+using UnityEngine.UIElements;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -117,7 +118,7 @@ public class DialogueManager : MonoBehaviour
             // display choices, if any, for this dialogue line
             DisplayChoices();
             // check if we are at the end of the story
-            if (!currentStory.canContinue && currentStory.currentChoices.Count == 0)
+            if (!currentStory.canContinue && currentStory.currentChoices.Count <= 0)
             {
                 exitLbl.SetActive(true);
                 nextLbl.SetActive(false);
@@ -126,7 +127,8 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            if(currentStory.currentChoices.Count == 0){
+            if (currentStory.currentChoices.Count <= 0)
+            {
                 exitLbl.SetActive(true);
                 nextLbl.SetActive(false);
                 canExitDialogue = true;
@@ -137,6 +139,8 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+        if (dialogueBubble == null || dialoguePanel == null)
+            return;
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialogueBubble.SetActive(true);
@@ -146,6 +150,9 @@ public class DialogueManager : MonoBehaviour
 
     private void ExitDialogueMode()
     {
+        if (dialogueBubble == null || dialoguePanel == null)
+            return;
+
         dialogueIsPlaying = false;
         dialogueBubble.SetActive(false);
         dialoguePanel.SetActive(false);
@@ -225,10 +232,16 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void CheckIfBubbleShouldDisplay(){
-        if(String.IsNullOrWhiteSpace(dialogueText.text)){
-                dialogueBubble.SetActive(false);
-        } else {
+    private void CheckIfBubbleShouldDisplay()
+    {
+        if (dialogueBubble == null)
+            return;
+        if (String.IsNullOrWhiteSpace(dialogueText.text))
+        {
+            dialogueBubble.SetActive(false);
+        }
+        else
+        {
             dialogueBubble.SetActive(true);
         }
     }

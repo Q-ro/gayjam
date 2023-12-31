@@ -18,6 +18,8 @@ namespace Scripts.Interaction
         private DialogueManager dialogueManager;
         private GameObject tableObjectSpawnerPosition;
 
+        bool droppedCargo = false;
+
         public void SetUpTableSpawnPosition(GameObject tableObjectSpawnerPosition)
         {
             this.tableObjectSpawnerPosition = tableObjectSpawnerPosition;
@@ -65,6 +67,7 @@ namespace Scripts.Interaction
                     if (objectToSpawn == null)
                         return;
                     dialogueManager.CanExitDialogue = false;
+                    //droppedCargo = true;
                     TableDropObjectSpawner.OnSpawnDropObject?.Invoke(objectToSpawn);
                 }
                 else
@@ -75,11 +78,12 @@ namespace Scripts.Interaction
                         return;
                     dialogueManager.CanExitDialogue = false;
                     Destroy(a.gameObject);
+                    //droppedCargo = true;
                     OnObjectWasRetrieved?.Invoke();
                     //Destroy(this.gameObject);
                     // if (a.IsInteractable)
                     // {
-                        
+
                     // }
                 }
             }
