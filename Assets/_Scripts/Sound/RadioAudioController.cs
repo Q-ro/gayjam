@@ -13,13 +13,13 @@ public class RadioAudioController : MonoBehaviour
     void Start()
     {
         OnSetRadioStatic += SwitchToRadioStatic;
+        BackgroundNoiseAudioController.OnSetSilenceBackgroundNoise += () => { m_AudioSource.volume = 0.15f; };
     }
 
     private void SwitchToRadioStatic()
     {
         m_AudioSource.Stop();
         m_AudioSource.clip = silence;
-        //m_AudioSource.volume = 0.75f;
         m_AudioSource.Play();
     }
 }
