@@ -77,13 +77,16 @@ namespace Scripts.Interaction
                     var a = GameObject.FindAnyObjectByType<InspectableObject>();
                     if (a == null)
                         return;
-                    if (a.IsInteractable)
-                    {
-                        dialogueManager.CanExitDialogue = false;
-                        Destroy(a.gameObject);
-                        OnObjectWasRetrieved?.Invoke();
-                        //Destroy(this.gameObject);
-                    }
+                    Debug.Log("Object is not null");
+                    Debug.Log("object destroyed");
+                    dialogueManager.CanExitDialogue = false;
+                    Destroy(a.gameObject);
+                    OnObjectWasRetrieved?.Invoke();
+                    //Destroy(this.gameObject);
+                    // if (a.IsInteractable)
+                    // {
+                        
+                    // }
                 }
             }
         }

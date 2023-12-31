@@ -1,7 +1,7 @@
 -> Main
 === Main ===
-* [Lost memours office, how may i help you?]
-    - Good morning, i just found this wallet, someone may be looking for it
+* [Lost memours office, how may I help you?]
+    - Good morning, I just found this wallet, someone may be looking for it
 -> Ty
     =Ty
     * [Thank you for your kindness, can you tell me where you found it?]
@@ -12,7 +12,7 @@
     -> NiceDay
     = NiceDay
         * [Thank you for your help]
-        * [Anything else i can help you with?]
+        * [Anything else I can help you with?]
             No, that'd be all, have a nice day
             ->NiceDay
 
