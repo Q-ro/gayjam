@@ -74,6 +74,8 @@ public class NPCSpawnerController : MonoBehaviour
         currentNPC = Instantiate(npcsToSpawn[npcToSpawnIndex]);
         currentNPC.transform.position = spawnPoint.position;
         npcToSpawnIndex++;
+        if (npcToSpawnIndex > 5)
+            RadioAudioController.OnSetRadioStatic?.Invoke();
     }
 
 }
