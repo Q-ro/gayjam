@@ -17,6 +17,9 @@ public class RadioAudioController : MonoBehaviour
 
     private void SwitchToRadioStatic()
     {
+        m_AudioSource.Stop();
         m_AudioSource.clip = silence;
+        //m_AudioSource.volume = 0.75f;
+        m_AudioSource.Play();
     }
 }

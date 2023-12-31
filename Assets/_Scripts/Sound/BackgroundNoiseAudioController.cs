@@ -16,6 +16,8 @@ public class BackgroundNoiseAudioController : MonoBehaviour
 
     private void SilenceBackgroundNoise()
     {
+        m_AudioSource.Stop();
         m_AudioSource.clip = m_AudioClip;
+        m_AudioSource.Play();
     }
 }

@@ -41,9 +41,9 @@ public class NPCSpawnerController : MonoBehaviour
                 return;
 
             //TODO: Define NPC for to trigger the events here
-            if (npcToSpawnIndex > 5)
+            if (npcToSpawnIndex > 2)
                 RadioAudioController.OnSetRadioStatic?.Invoke();
-            if (npcToSpawnIndex > 8)
+            if (npcToSpawnIndex > 4)
                 BackgroundNoiseAudioController.OnSetSilenceBackgroundNoise?.Invoke();
 
             StartCoroutine(CODelayedSpawn());
