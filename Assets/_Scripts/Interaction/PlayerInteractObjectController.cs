@@ -65,7 +65,7 @@ public class PlayerInteractObjectController : MonoBehaviour
             }
         } else {
             var interactableScript = interactableObject.GetComponent<InteractableObjectBase>();
-            if(interactableScript != null){
+            if(interactableScript != null && interactableScript.IsInteractable){
                 interactableScript.Interact();
                 interactableScript.StartInteraction();
             }

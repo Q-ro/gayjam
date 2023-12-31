@@ -36,15 +36,21 @@ public class NPCSpawnerController : MonoBehaviour
 
         StartCoroutine(COMoveToTarget(exitWapoint.position, 3.5f, () =>
         {
+            Debug.Log("Index: " + npcToSpawnIndex);
             Destroy(currentNPC);
+            
+            if (npcToSpawnIndex == 4){
+                Debug.Log("Deleting family photo");
+                FamilyPhotoController.OnReturnPolaroid?.Invoke();
+            }
             if (npcToSpawnIndex >= npcsToSpawn.Length)
                 return;
 
-            //TODO: Define NPC for to trigger the events here
-            if (npcToSpawnIndex > 2)
-                RadioAudioController.OnSetRadioStatic?.Invoke();
-            if (npcToSpawnIndex > 4)
-                BackgroundNoiseAudioController.OnSetSilenceBackgroundNoise?.Invoke();
+            
+                //RadioAudioController.OnSetRadioStatic?.Invoke();
+            // if (npcToSpawnIndex > 4)
+                
+                //BackgroundNoiseAudioController.OnSetSilenceBackgroundNoise?.Invoke();
 
             StartCoroutine(CODelayedSpawn());
         }));
