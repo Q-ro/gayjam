@@ -3824,7 +3824,7 @@ MonoBehaviour:
   - {fileID: 1703912589}
   - {fileID: 382228819}
   - {fileID: 729903820}
-  timeBetweenLights: 0
+  timeBetweenLights: 6
 --- !u!1001 &1959221174
 PrefabInstance:
   m_ObjectHideFlags: 0
