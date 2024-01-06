@@ -64,11 +64,14 @@ namespace Scripts.Interaction
             {
                 if (isDroppingObject)
                 {
+                    if (droppedCargo)
+                        return;
                     if (objectToSpawn == null)
                         return;
                     dialogueManager.CanExitDialogue = false;
-                    //droppedCargo = true;
+                    droppedCargo = true;
                     TableDropObjectSpawner.OnSpawnDropObject?.Invoke(objectToSpawn);
+                    //inkJson = null;
                 }
                 else
                 {

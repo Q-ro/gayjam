@@ -42,10 +42,10 @@ public class ChairInteractionController : InteractableObjectBase
             PlayerMovementController.MovementPlayerToPosition(stardChairPlayerTargetPosition.transform.position, standAnimationSpeed, false,
             () =>
                {
-                   isSeated = false;
-                   Physics.IgnoreLayerCollision(6, 2, false);
-                   gameObject.layer = 6;
                    OnInteractWithChair?.Invoke(false);
+                   isSeated = false;
+                   gameObject.layer = 6;
+                   Physics.IgnoreLayerCollision(6, 2, false);
                });
         }
     }
@@ -54,12 +54,16 @@ public class ChairInteractionController : InteractableObjectBase
     {
         if (!isSeated)
         {
-            isSeated = true;
+
             Physics.IgnoreLayerCollision(6, 2, true);
             gameObject.layer = 2;
             PlayerMovementController.OnLockPlayerMovementPerformed(true);
-            PlayerMovementController.MovementPlayerToPosition(sitChairPlayerTargetPosition.transform.position, sitAnimationSpeed, true, () => { });
-            OnInteractWithChair?.Invoke(true);
+            PlayerMovementController.MovementPlayerToPosition(sitChairPlayerTargetPosition.transform.position, sitAnimationSpeed, false, () =>
+            {
+                OnInteractWithChair?.Invoke(true);
+                isSeated = true;
+            });
+
         }
     }
 

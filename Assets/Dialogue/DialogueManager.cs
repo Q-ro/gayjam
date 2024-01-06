@@ -110,7 +110,7 @@ public class DialogueManager : MonoBehaviour
 
     private void ContinueStory()
     {
-        if (currentStory.canContinue && dialogueIsPlaying)
+        if (currentStory != null && currentStory.canContinue && dialogueIsPlaying)
         {
             nextLbl.SetActive(true);
             // set the text for the current dialogue line
@@ -123,15 +123,17 @@ public class DialogueManager : MonoBehaviour
                 exitLbl.SetActive(true);
                 nextLbl.SetActive(false);
                 canExitDialogue = true;
+                dialogueIsPlaying = false;
             }
         }
         else
         {
-            if (currentStory.currentChoices.Count <= 0)
+            if (currentStory != null && currentStory.currentChoices.Count <= 0 && !dialogueIsPlaying)
             {
                 exitLbl.SetActive(true);
                 nextLbl.SetActive(false);
                 canExitDialogue = true;
+                dialogueIsPlaying = false;
             }
         }
         CheckIfBubbleShouldDisplay();
@@ -159,6 +161,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
         nextLbl.SetActive(false);
         exitLbl.SetActive(false);
+        currentStory = null;
     }
 
     private void DisplayChoices()

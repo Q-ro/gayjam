@@ -3778,6 +3778,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1930347732}
+  - component: {fileID: 1930347733}
   m_Layer: 0
   m_Name: Lights
   m_TagString: Untagged
@@ -3805,6 +3806,25 @@ Transform:
   - {fileID: 729903821}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1930347733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930347731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e750077c483c4f4680716729b4164a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lights:
+  - {fileID: 133398021}
+  - {fileID: 859487654}
+  - {fileID: 1703912589}
+  - {fileID: 382228819}
+  - {fileID: 729903820}
+  timeBetweenLights: 0
 --- !u!1001 &1959221174
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -540,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 233827819413688666, guid: 284206dd289fecd48b4da15558fe08fd, type: 3}
   isDroppingObject: 1
-  inkJson: {fileID: 4900000, guid: 99f328c522196a948a3545c4f7fe7ba8, type: 3}
+  inkJson: {fileID: 4900000, guid: 472f1e05c4f888146b98597a176eb17c, type: 3}
   bubbleGameObject: {fileID: 6777643798317209080}
   bubbleText: {fileID: 1573504786246858345}
 --- !u!4 &8700001087322605054 stripped

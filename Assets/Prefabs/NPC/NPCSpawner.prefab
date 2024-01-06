@@ -96,7 +96,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 2740149156529393437}
   tableWapoint: {fileID: 5590868864084968084}
   exitWapoint: {fileID: 8637932788006170960}
-  spawnDelay: 6
+  spawnDelay: 5.5
 --- !u!1 &4948874413790506185
 GameObject:
   m_ObjectHideFlags: 0

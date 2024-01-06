@@ -545,6 +545,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 6488883469399527172, guid: 3b0606b05f219ca4c8b39263351648f2, type: 3}
   isDroppingObject: 0
-  inkJson: {fileID: 4900000, guid: c7c0c9d2f35f72a468a52a135c3c31b3, type: 3}
+  inkJson: {fileID: 4900000, guid: 4af0c5e4625dcf944b226454d108e2f7, type: 3}
   bubbleGameObject: {fileID: 5125753541020806740}
   bubbleText: {fileID: 791658162565077831}
