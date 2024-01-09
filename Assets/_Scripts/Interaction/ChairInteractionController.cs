@@ -58,12 +58,12 @@ public class ChairInteractionController : InteractableObjectBase
             Physics.IgnoreLayerCollision(6, 2, true);
             gameObject.layer = 2;
             PlayerMovementController.OnLockPlayerMovementPerformed(true);
-            PlayerMovementController.MovementPlayerToPosition(sitChairPlayerTargetPosition.transform.position, sitAnimationSpeed, false, () =>
-            {
-                OnInteractWithChair?.Invoke(true);
-                isSeated = true;
-            });
-
+            PlayerMovementController.MovementPlayerToPosition(sitChairPlayerTargetPosition.transform.position, sitAnimationSpeed, false,
+            () =>
+                {
+                    OnInteractWithChair?.Invoke(true);
+                    isSeated = true;
+                });
         }
     }
 
